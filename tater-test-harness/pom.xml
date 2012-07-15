@@ -13,4 +13,11 @@
 
     <name>Tater :: Test Harness</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>net.peachjean.commons</groupId>
+            <artifactId>pjcommons-test</artifactId>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 </project>
