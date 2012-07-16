@@ -100,7 +100,7 @@ public class ImplementedProcessor extends AbstractProcessor {
 
                         @Override
                         public String visitEnumConstant(VariableElement c, Void aVoid) {
-                            throw new UnsupportedOperationException();
+                            return c.getEnclosingElement().toString() + "." + c.toString();
                         }
 
                         @Override
@@ -166,7 +166,7 @@ public class ImplementedProcessor extends AbstractProcessor {
 
                         @Override
                         public String visitEnumConstant(VariableElement c, Void aVoid) {
-                            throw new UnsupportedOperationException();
+                            return c.getEnclosingElement().toString();
                         }
 
                         @Override
