@@ -2,6 +2,7 @@ package net.peachjean.tater.utils;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.io.OutputSupplier;
+import com.google.common.primitives.Primitives;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
@@ -51,11 +52,131 @@ public class ImplementedProcessor extends AbstractProcessor {
                         public String visitString(String s, Void aVoid) {
                             return String.format("\"%s\"", s);
                         }
+
+                        @Override
+                        public String visitBoolean(boolean b, Void aVoid) {
+                            return String.valueOf(b);
+                        }
+
+                        @Override
+                        public String visitByte(byte b, Void aVoid) {
+                            return String.valueOf(b);
+                        }
+
+                        @Override
+                        public String visitChar(char c, Void aVoid) {
+                            return String.valueOf(c);
+                        }
+
+                        @Override
+                        public String visitDouble(double d, Void aVoid) {
+                            return String.valueOf(d);
+                        }
+
+                        @Override
+                        public String visitFloat(float f, Void aVoid) {
+                            return String.valueOf(f);
+                        }
+
+                        @Override
+                        public String visitInt(int i, Void aVoid) {
+                            return String.valueOf(i);
+                        }
+
+                        @Override
+                        public String visitLong(long l, Void aVoid) {
+                            return String.valueOf(l);
+                        }
+
+                        @Override
+                        public String visitShort(short s, Void aVoid) {
+                            return String.valueOf(s);
+                        }
+
+                        @Override
+                        public String visitType(TypeMirror t, Void aVoid) {
+                            throw new UnsupportedOperationException();
+                        }
+
+                        @Override
+                        public String visitEnumConstant(VariableElement c, Void aVoid) {
+                            throw new UnsupportedOperationException();
+                        }
+
+                        @Override
+                        public String visitAnnotation(AnnotationMirror a, Void aVoid) {
+                            throw new UnsupportedOperationException();
+                        }
+
+                        @Override
+                        public String visitArray(List<? extends AnnotationValue> vals, Void aVoid) {
+                            throw new UnsupportedOperationException();
+                        }
                     }, null);
                     String typeRep = defaultValue.accept(new SimpleAnnotationValueVisitor7<String, Void>() {
                         @Override
                         public String visitString(String s, Void aVoid) {
                             return String.class.getName();
+                        }
+
+                        @Override
+                        public String visitBoolean(boolean b, Void aVoid) {
+                            return boolean.class.getName();
+                        }
+
+                        @Override
+                        public String visitByte(byte b, Void aVoid) {
+                            return byte.class.getName();
+                        }
+
+                        @Override
+                        public String visitChar(char c, Void aVoid) {
+                            return char.class.getName();
+                        }
+
+                        @Override
+                        public String visitDouble(double d, Void aVoid) {
+                            return double.class.getName();
+                        }
+
+                        @Override
+                        public String visitFloat(float f, Void aVoid) {
+                            return float.class.getName();
+                        }
+
+                        @Override
+                        public String visitInt(int i, Void aVoid) {
+                            return int.class.getName();
+                        }
+
+                        @Override
+                        public String visitLong(long i, Void aVoid) {
+                            return long.class.getName();
+                        }
+
+                        @Override
+                        public String visitShort(short s, Void aVoid) {
+                            return short.class.getName();
+                        }
+
+                        @Override
+                        public String visitType(TypeMirror t, Void aVoid) {
+                            throw new UnsupportedOperationException();
+                        }
+
+                        @Override
+                        public String visitEnumConstant(VariableElement c, Void aVoid) {
+                            throw new UnsupportedOperationException();
+                        }
+
+                        @Override
+                        public String visitAnnotation(AnnotationMirror a, Void aVoid) {
+                            throw new UnsupportedOperationException();
+                        }
+
+                        @Override
+                        public String visitArray(List<? extends AnnotationValue> vals, Void aVoid) {
+                            throw new UnsupportedOperationException();
                         }
                     }, null);
                     String name = e.getSimpleName().toString();

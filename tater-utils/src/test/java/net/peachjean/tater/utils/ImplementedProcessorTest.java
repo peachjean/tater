@@ -30,6 +30,7 @@ public class ImplementedProcessorTest {
                         "@Implemented " +
                         "public @interface MyAnnotation {" +
                         "  String value() default \"default\";" +
+                        "  int intVal() default 1;" +
                         "}"),
                 new JavaSourceFromText("com.example.MyAnnotationAsserter", "" +
                         "package com.example;" +
@@ -39,8 +40,10 @@ public class ImplementedProcessorTest {
                         "  public void doAssertions(AssertionHandler assertionHandler) {" +
                         "    MyAnnotation a1 = MyAnnotationImpl.build();" +
                         "    assertionHandler.assertEquals(\"default\", a1.value());" +
-                        "    MyAnnotation a2 = MyAnnotationImpl.value(\"someValue\").build();" +
+                        "    assertionHandler.assertEquals(1, a1.intVal());" +
+                        "    MyAnnotation a2 = MyAnnotationImpl.value(\"someValue\").intVal(2).build();" +
                         "    assertionHandler.assertEquals(\"someValue\", a2.value());" +
+                        "    assertionHandler.assertEquals(2, a2.intVal());" +
                         "    MyAnnotation a3 = MyAnnotationImpl.build(\"someValue\");" +
                         "    assertionHandler.assertEquals(\"someValue\", a3.value());" +
                         "  }" +
