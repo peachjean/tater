@@ -41,6 +41,8 @@ public class ImplementedProcessorTest {
                         "    assertionHandler.assertEquals(\"default\", a1.value());" +
                         "    MyAnnotation a2 = MyAnnotationImpl.value(\"someValue\").build();" +
                         "    assertionHandler.assertEquals(\"someValue\", a2.value());" +
+                        "    MyAnnotation a3 = MyAnnotationImpl.build(\"someValue\");" +
+                        "    assertionHandler.assertEquals(\"someValue\", a3.value());" +
                         "  }" +
                         "}")
         };

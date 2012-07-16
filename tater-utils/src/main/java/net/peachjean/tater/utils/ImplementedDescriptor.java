@@ -17,11 +17,22 @@ class ImplementedDescriptor {
     private final String packageName;
     private final String simpleName;
     private final List<FieldDescriptor> fields;
+    private final FieldDescriptor valueField;
 
     public ImplementedDescriptor(String packageName, String simpleName, List<FieldDescriptor> fields) {
         this.packageName = packageName;
         this.simpleName = simpleName;
         this.fields = fields;
+        this.valueField = findValueField(fields);
+    }
+
+    private FieldDescriptor findValueField(List<FieldDescriptor> fields) {
+        for(FieldDescriptor field: fields) {
+            if("value".equals(field.getName())) {
+                return field;
+            }
+        }
+        return null;
     }
 
     public void generateSource(OutputSupplier<Writer> writerSupplier)
@@ -58,5 +69,9 @@ class ImplementedDescriptor {
 
     public List<FieldDescriptor> getFields() {
         return fields;
+    }
+
+    public FieldDescriptor getValueField() {
+        return valueField;
     }
 }

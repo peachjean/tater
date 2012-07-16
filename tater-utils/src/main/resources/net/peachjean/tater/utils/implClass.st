@@ -24,6 +24,12 @@ $annotationType.fields:{field|
       return new Builder().build();
     }
 
+$if(annotationType.valueField)$
+    public static $annotationType.simpleName$ build(final $annotationType.valueField.type$ v) {
+      return new Builder().build(v);
+    }
+$endif$
+
 $annotationType.fields:{field|
     public static Builder $field.name$(final $field.type$ v) {
       return new Builder().$field.name$(v);
@@ -35,7 +41,13 @@ $annotationType.fields:{field|
         return new $annotationType.simpleName$Impl($annotationType.fields:{field|$field.name$}; separator=", "$);
       }
 
-    $annotationType.fields:{field|
+ $if(annotationType.valueField)$
+      public $annotationType.simpleName$ build(final $annotationType.valueField.type$ v) {
+        this.$annotationType.valueField.name$ = v;
+        return this.build();
+      }
+ $endif$
+   $annotationType.fields:{field|
       private $field.type$ $field.name$ = $field.defaultValue$;
 
       public Builder $field.name$(final $field.type$ v) {
