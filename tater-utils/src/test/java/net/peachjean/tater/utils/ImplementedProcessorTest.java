@@ -37,8 +37,10 @@ public class ImplementedProcessorTest {
                         "import net.peachjean.commons.test.junit.AssertionHandler;" +
                         "public class MyAnnotationAsserter implements CompilerAsserter {" +
                         "  public void doAssertions(AssertionHandler assertionHandler) {" +
-                        "    MyAnnotation a = MyAnnotationImpl.build();" +
-                        "    assertionHandler.assertEquals(\"default\", a.value());" +
+                        "    MyAnnotation a1 = MyAnnotationImpl.build();" +
+                        "    assertionHandler.assertEquals(\"default\", a1.value());" +
+                        "    MyAnnotation a2 = MyAnnotationImpl.value(\"someValue\").build();" +
+                        "    assertionHandler.assertEquals(\"someValue\", a2.value());" +
                         "  }" +
                         "}")
         };
