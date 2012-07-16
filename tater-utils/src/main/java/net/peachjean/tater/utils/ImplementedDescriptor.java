@@ -8,17 +8,20 @@ import org.antlr.stringtemplate.StringTemplateGroup;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
 
-public class ImplementedDescriptor {
+class ImplementedDescriptor {
     public static final String TEMPLATE_PATH =
             ImplementedDescriptor.class.getPackage().getName().replaceAll("\\.", "/") + "/";
 
     private final String packageName;
     private final String simpleName;
+    private final List<FieldDescriptor> fields;
 
-    public ImplementedDescriptor(String packageName, String simpleName) {
+    public ImplementedDescriptor(String packageName, String simpleName, List<FieldDescriptor> fields) {
         this.packageName = packageName;
         this.simpleName = simpleName;
+        this.fields = fields;
     }
 
     public void generateSource(OutputSupplier<Writer> writerSupplier)
@@ -51,5 +54,9 @@ public class ImplementedDescriptor {
 
     public String getSimpleName() {
         return simpleName;
+    }
+
+    public List<FieldDescriptor> getFields() {
+        return fields;
     }
 }

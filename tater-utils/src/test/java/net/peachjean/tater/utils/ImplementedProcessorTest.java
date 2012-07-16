@@ -29,6 +29,7 @@ public class ImplementedProcessorTest {
                         "import net.peachjean.tater.utils.*;" +
                         "@Implemented " +
                         "public @interface MyAnnotation {" +
+                        "  String value() default \"default\";" +
                         "}"),
                 new JavaSourceFromText("com.example.MyAnnotationAsserter", "" +
                         "package com.example;" +
@@ -36,7 +37,8 @@ public class ImplementedProcessorTest {
                         "import net.peachjean.commons.test.junit.AssertionHandler;" +
                         "public class MyAnnotationAsserter implements CompilerAsserter {" +
                         "  public void doAssertions(AssertionHandler assertionHandler) {" +
-                        "    MyAnnotationImpl.build();" +
+                        "    MyAnnotation a = MyAnnotationImpl.build();" +
+                        "    assertionHandler.assertEquals(\"default\", a.value());" +
                         "  }" +
                         "}")
         };
