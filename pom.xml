@@ -30,13 +30,10 @@
     </licenses>
     <developers>
         <developer>
-            <developer>
-                <id>jared.bunting</id>
-                <name>Jared Bunting</name>
-                <email>jared.bunting@peachjean.com</email>
-                <organization>PeachJean Solutions</organization>
-                <timezone>-6</timezone>
-            </developer>
+            <name>Jared Bunting</name>
+            <email>jared.bunting@peachjean.com</email>
+            <organization>PeachJean Solutions</organization>
+            <timezone>-6</timezone>
         </developer>
     </developers>
     <properties>
