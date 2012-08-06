@@ -48,6 +48,9 @@
 
     <dependencyManagement>
         <dependencies>
+
+	        <!-- INTERNAL PROJECT DEPENDENCIES -->
+
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>tater-test-harness</artifactId>
@@ -64,6 +67,8 @@
                 <version>0.1-SNAPSHOT</version>
             </dependency>
 
+	        <!-- BASIC DEPENDENCY LIBRARIES-->
+
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -74,6 +79,21 @@
                 <artifactId>stringtemplate</artifactId>
                 <version>${stringtemplate.version}</version>
             </dependency>
+
+	        <!-- MAVEN PLUGIN DEPENDENCIES -->
+
+	        <dependency>
+	            <groupId>org.apache.maven</groupId>
+	            <artifactId>maven-plugin-api</artifactId>
+	            <version>2.2.1</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.apache.maven</groupId>
+	            <artifactId>maven-archiver</artifactId>
+	            <version>2.5</version>
+	        </dependency>
+
+	        <!-- TEST DEPENDENCIES -->
 
             <dependency>
                 <groupId>net.peachjean.commons</groupId>
@@ -93,6 +113,11 @@
     <build>
         <pluginManagement>
             <plugins>
+	            <plugin>
+		            <groupId>${project.groupId}</groupId>
+		            <artifactId>tater-maven-plugin</artifactId>
+		            <version>0.1-SNAPSHOT</version>
+	            </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>2.5.1</version>
