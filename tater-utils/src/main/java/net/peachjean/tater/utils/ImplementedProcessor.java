@@ -8,8 +8,8 @@ import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.*;
 import javax.lang.model.type.TypeMirror;
-import javax.lang.model.util.SimpleAnnotationValueVisitor7;
-import javax.lang.model.util.SimpleElementVisitor7;
+import javax.lang.model.util.SimpleAnnotationValueVisitor6;
+import javax.lang.model.util.SimpleElementVisitor6;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.IOException;
@@ -18,10 +18,15 @@ import java.util.List;
 import java.util.Set;
 
 @SupportedAnnotationTypes("net.peachjean.tater.utils.Implemented")
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
 public class ImplementedProcessor extends AbstractProcessor {
 
-    @Override
+	@Override
+	public SourceVersion getSupportedSourceVersion()
+	{
+		return SourceVersion.latest();
+	}
+
+	@Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         for(TypeElement annotation: annotations) {
             for(Element element: roundEnv.getElementsAnnotatedWith(annotation)) {
@@ -42,12 +47,12 @@ public class ImplementedProcessor extends AbstractProcessor {
     private List<FieldDescriptor> createFieldList(TypeElement serviceElement) {
         ImmutableList.Builder<FieldDescriptor> fieldListBuilder = ImmutableList.builder();
         for(Element enclosed: serviceElement.getEnclosedElements()) {
-            enclosed.accept(new SimpleElementVisitor7<Void, ImmutableList.Builder<FieldDescriptor>>() {
+            enclosed.accept(new SimpleElementVisitor6<Void, ImmutableList.Builder<FieldDescriptor>>() {
                 @Override
                 public Void visitExecutable(ExecutableElement e, ImmutableList.Builder<FieldDescriptor> fieldListBuilder) {
                     TypeMirror returnType = e.getReturnType();
                     AnnotationValue defaultValue = e.getDefaultValue();
-                    String defaultValueRep = defaultValue.accept(new SimpleAnnotationValueVisitor7<String, Void>() {
+                    String defaultValueRep = defaultValue.accept(new SimpleAnnotationValueVisitor6<String, Void>() {
                         @Override
                         public String visitString(String s, Void aVoid) {
                             return String.format("\"%s\"", s);
@@ -113,7 +118,7 @@ public class ImplementedProcessor extends AbstractProcessor {
                             throw new UnsupportedOperationException();
                         }
                     }, null);
-                    String typeRep = defaultValue.accept(new SimpleAnnotationValueVisitor7<String, Void>() {
+                    String typeRep = defaultValue.accept(new SimpleAnnotationValueVisitor6<String, Void>() {
                         @Override
                         public String visitString(String s, Void aVoid) {
                             return String.class.getName();
