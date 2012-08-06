@@ -37,7 +37,7 @@
         </developer>
     </developers>
     <properties>
-        <pjcommons.version>0.2-SNAPSHOT</pjcommons.version>
+        <pjcommons.version>0.2</pjcommons.version>
         <stringtemplate.version>3.2.1</stringtemplate.version>
     </properties>
     <modules>
@@ -51,17 +51,17 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>tater-test-harness</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>tater-maven-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>tater-utils</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>0.1-SNAPSHOT</version>
             </dependency>
 
             <dependency>

@@ -22,6 +22,7 @@ build.number
 *.ipr
 *.iws
 .idea/
+atlassian-ide-plugin.xml
 
 # Mac filesystem dust
 .DS_Store
