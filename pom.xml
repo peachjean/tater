@@ -79,6 +79,11 @@
                 <artifactId>stringtemplate</artifactId>
                 <version>${stringtemplate.version}</version>
             </dependency>
+            <dependency>
+                <groupId>pl.ncdc.differentia</groupId>
+                <artifactId>differentia-javaica</artifactId>
+                <version>1.2</version>
+            </dependency>
 
 	        <!-- MAVEN PLUGIN DEPENDENCIES -->
 

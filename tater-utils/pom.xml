@@ -29,6 +29,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>pl.ncdc.differentia</groupId>
+            <artifactId>differentia-javaica</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.peachjean.commons</groupId>
+            <artifactId>pjcommons-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit-dep</artifactId>
         </dependency>

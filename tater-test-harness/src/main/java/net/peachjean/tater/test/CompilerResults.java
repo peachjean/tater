@@ -79,6 +79,12 @@ public class CompilerResults
                 numExpected, numFound);
     }
 
+    /**
+     * Allows running assertions from within the undertest codebase.
+     *
+     * @param asserterClass The name of the class from the undertest codebase that implements {@link CompilerAsserter}.
+     * @throws ClassNotFoundException
+     */
     public void runAssertion(String asserterClass) throws ClassNotFoundException {
         ClassLoader cl = fileManager.getClassLoader(StandardLocation.CLASS_OUTPUT);
         Class<? extends CompilerAsserter> asserterType = (Class<? extends CompilerAsserter>) cl.loadClass(asserterClass);
