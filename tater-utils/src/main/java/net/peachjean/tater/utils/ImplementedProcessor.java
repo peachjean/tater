@@ -16,13 +16,21 @@ import java.util.Set;
 @SupportedAnnotationTypes("net.peachjean.tater.utils.Implemented")
 public class ImplementedProcessor extends AbstractProcessor {
 
+    private Utils utils;
+
 	@Override
 	public SourceVersion getSupportedSourceVersion()
 	{
 		return SourceVersion.latest();
 	}
 
-	@Override
+    @Override
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+        this.utils = new Utils(processingEnv.getElementUtils(), processingEnv.getTypeUtils());
+    }
+
+    @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         for(TypeElement annotation: annotations) {
             for(Element element: roundEnv.getElementsAnnotatedWith(annotation)) {
@@ -43,7 +51,7 @@ public class ImplementedProcessor extends AbstractProcessor {
     private List<FieldDescriptor> createFieldList(TypeElement serviceElement) {
         ImmutableList.Builder<FieldDescriptor> fieldListBuilder = ImmutableList.builder();
         for(Element enclosed: serviceElement.getEnclosedElements()) {
-            FieldDescriptor fieldDescriptor = enclosed.accept(AnnotationFieldVisitor.INSTANCE, null);
+            FieldDescriptor fieldDescriptor = enclosed.accept(AnnotationFieldVisitor.INSTANCE, utils);
             fieldListBuilder.add(fieldDescriptor);
         }
         return fieldListBuilder.build();
