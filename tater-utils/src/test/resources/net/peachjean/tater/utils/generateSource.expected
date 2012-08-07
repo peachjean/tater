@@ -175,34 +175,34 @@ public class MyAnnotationImpl implements MyAnnotation {
     public static Builder field11(final boolean v) {
       return new Builder().field11(v);
     }
-    public static Builder array1(final java.lang.String[] v) {
+    public static Builder array1(final java.lang.String ... v) {
       return new Builder().array1(v);
     }
-    public static Builder array2(final int[] v) {
+    public static Builder array2(final int ... v) {
       return new Builder().array2(v);
     }
-    public static Builder array3(final float[] v) {
+    public static Builder array3(final float ... v) {
       return new Builder().array3(v);
     }
-    public static Builder array4(final long[] v) {
+    public static Builder array4(final long ... v) {
       return new Builder().array4(v);
     }
-    public static Builder array5(final double[] v) {
+    public static Builder array5(final double ... v) {
       return new Builder().array5(v);
     }
-    public static Builder array6(final java.lang.Class[] v) {
+    public static Builder array6(final java.lang.Class ... v) {
       return new Builder().array6(v);
     }
-    public static Builder array8(final byte[] v) {
+    public static Builder array8(final byte ... v) {
       return new Builder().array8(v);
     }
-    public static Builder array9(final char[] v) {
+    public static Builder array9(final char ... v) {
       return new Builder().array9(v);
     }
-    public static Builder array10(final short[] v) {
+    public static Builder array10(final short ... v) {
       return new Builder().array10(v);
     }
-    public static Builder array11(final boolean[] v) {
+    public static Builder array11(final boolean ... v) {
       return new Builder().array11(v);
     }
 
@@ -280,61 +280,61 @@ public class MyAnnotationImpl implements MyAnnotation {
          }
              private java.lang.String[] array1 = new String[] {"value1"};
 
-         public Builder array1(final java.lang.String[] v) {
+         public Builder array1(final java.lang.String ... v) {
            this.array1 = v;
            return this;
          }
              private int[] array2 = new int[] {5};
 
-         public Builder array2(final int[] v) {
+         public Builder array2(final int ... v) {
            this.array2 = v;
            return this;
          }
              private float[] array3 = new float[] {5.5f};
 
-         public Builder array3(final float[] v) {
+         public Builder array3(final float ... v) {
            this.array3 = v;
            return this;
          }
              private long[] array4 = new long[] {5l};
 
-         public Builder array4(final long[] v) {
+         public Builder array4(final long ... v) {
            this.array4 = v;
            return this;
          }
              private double[] array5 = new double[] {5.5d};
 
-         public Builder array5(final double[] v) {
+         public Builder array5(final double ... v) {
            this.array5 = v;
            return this;
          }
              private java.lang.Class[] array6 = new Class[] {com.example.testa.MyAnnotation.class};
 
-         public Builder array6(final java.lang.Class[] v) {
+         public Builder array6(final java.lang.Class ... v) {
            this.array6 = v;
            return this;
          }
              private byte[] array8 = new byte[] {5};
 
-         public Builder array8(final byte[] v) {
+         public Builder array8(final byte ... v) {
            this.array8 = v;
            return this;
          }
              private char[] array9 = new char[] {'c'};
 
-         public Builder array9(final char[] v) {
+         public Builder array9(final char ... v) {
            this.array9 = v;
            return this;
          }
              private short[] array10 = new short[] {3};
 
-         public Builder array10(final short[] v) {
+         public Builder array10(final short ... v) {
            this.array10 = v;
            return this;
          }
              private boolean[] array11 = new boolean[] {true};
 
-         public Builder array11(final boolean[] v) {
+         public Builder array11(final boolean ... v) {
            this.array11 = v;
            return this;
          }
