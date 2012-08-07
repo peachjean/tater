@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.util.List;
 
 import javax.tools.SimpleJavaFileObject;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 
 public class JavaSourceFromText extends SimpleJavaFileObject
@@ -39,4 +42,27 @@ public class JavaSourceFromText extends SimpleJavaFileObject
 	{
 		return code;
 	}
+
+    public static Builder builder(String name) {
+        return new Builder(name);
+    }
+
+    public static class Builder {
+
+        private final String name;
+        private final List<String> lines = Lists.newArrayList();
+
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        public Builder line(final String line) {
+            this.lines.add(line);
+            return this;
+        }
+
+        public JavaSourceFromText build() {
+            return new JavaSourceFromText(this.name, Joiner.on("\n").join(lines));
+        }
+    }
 }

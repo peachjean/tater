@@ -8,7 +8,7 @@ import javax.annotation.Nullable;
 import javax.lang.model.type.*;
 import javax.lang.model.util.TypeKindVisitor6;
 
-class TypeSourceFormatter extends TypeKindVisitor6<String,Utils> {
+public class TypeSourceFormatter extends TypeKindVisitor6<String,Utils> {
     public static TypeSourceFormatter INSTANCE = new TypeSourceFormatter();
 
     private TypeSourceFormatter() {}
@@ -71,7 +71,7 @@ class TypeSourceFormatter extends TypeKindVisitor6<String,Utils> {
     }
 
     private String resolveEnclosingStringPortion(DeclaredType t, Utils o) {
-        final String value = t.getEnclosingType().accept(this, o);
+        final String value = t.asElement().getEnclosingElement().asType().accept(this, o);
         if(value == null) {
             return o.getElements().getPackageOf(t.asElement()).getQualifiedName().toString();
         }

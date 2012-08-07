@@ -24,37 +24,42 @@ public class ImplementedProcessorTest {
     @Test
     public void testDefaultClass() throws IOException, ClassNotFoundException {
         JavaFileObject[] sourceFiles = {
-                new JavaSourceFromText("com.example.MyAnnotation", "" +
-                        "package com.example;" +
-                        "import net.peachjean.tater.utils.*;" +
-                        "@Implemented " +
-                        "public @interface MyAnnotation {" +
-                        "  String value() default \"default\";" +
-                        "  int intVal() default 1;" +
-                        "  MyEnum enumVal() default MyEnum.ONE;" +
-                        "}"),
-                new JavaSourceFromText("com.example.MyAnnotationAsserter", "" +
-                        "package com.example;" +
-                        "import net.peachjean.tater.test.*;" +
-                        "import net.peachjean.commons.test.junit.AssertionHandler;" +
-                        "public class MyAnnotationAsserter implements CompilerAsserter {" +
-                        "  public void doAssertions(AssertionHandler assertionHandler) {" +
-                        "    MyAnnotation a1 = MyAnnotationImpl.build();" +
-                        "    assertionHandler.assertEquals(\"default\", a1.value());" +
-                        "    assertionHandler.assertEquals(1, a1.intVal());" +
-                        "    assertionHandler.assertEquals(MyEnum.ONE, a1.enumVal());" +
-                        "    MyAnnotation a2 = MyAnnotationImpl.value(\"someValue\").intVal(2).build();" +
-                        "    assertionHandler.assertEquals(\"someValue\", a2.value());" +
-                        "    assertionHandler.assertEquals(2, a2.intVal());" +
-                        "    MyAnnotation a3 = MyAnnotationImpl.build(\"someValue\");" +
-                        "    assertionHandler.assertEquals(\"someValue\", a3.value());" +
-                        "  }" +
-                        "}"),
-                new JavaSourceFromText("com.example.MyEnum", "" +
-                        "package com.example;" +
-                        "public enum MyEnum {" +
-                        "  ONE, TWO, THREE" +
-                        "}")
+                JavaSourceFromText.builder("com.example.MyAnnotation")
+                        .line("package com.example;")
+                        .line("import net.peachjean.tater.utils.*;")
+                        .line("@Implemented ")
+                        .line("public @interface MyAnnotation {")
+                        .line("  String value() default \"default\";")
+                        .line("  int intVal() default 1;")
+//                        .line("  Class<? extends java.util.List> listType() default java.util.ArrayList.class;")
+                        .line("  MyEnum enumVal() default MyEnum.ONE;")
+                        .line("}")
+                .build(),
+                JavaSourceFromText.builder("com.example.MyAnnotationAsserter")
+                        .line("package com.example;")
+                        .line("import net.peachjean.tater.test.*;")
+                        .line("import net.peachjean.commons.test.junit.AssertionHandler;")
+                        .line("public class MyAnnotationAsserter implements CompilerAsserter {")
+                        .line("  public void doAssertions(AssertionHandler assertionHandler) {")
+                        .line("    MyAnnotation a1 = MyAnnotationImpl.build();")
+                        .line("    assertionHandler.assertEquals(\"default\", a1.value());")
+                        .line("    assertionHandler.assertEquals(1, a1.intVal());")
+//                        .line("    assertionHandler.assertEquals(java.util.ArrayList.class, a1.listType());")
+                        .line("    assertionHandler.assertEquals(MyEnum.ONE, a1.enumVal());")
+                        .line("    MyAnnotation a2 = MyAnnotationImpl.value(\"someValue\").intVal(2).build();")
+                        .line("    assertionHandler.assertEquals(\"someValue\", a2.value());")
+                        .line("    assertionHandler.assertEquals(2, a2.intVal());")
+                        .line("    MyAnnotation a3 = MyAnnotationImpl.build(\"someValue\");")
+                        .line("    assertionHandler.assertEquals(\"someValue\", a3.value());")
+                        .line("  }")
+                        .line("}")
+                .build(),
+                JavaSourceFromText.builder("com.example.MyEnum")
+                        .line("package com.example;")
+                        .line("public enum MyEnum {")
+                        .line("  ONE, TWO, THREE")
+                        .line("}")
+                .build()
         };
         CompilerResults results = new CompilerHarness(tmpDir.getDir(), accumulator, sourceFiles)
                 .addProcessor(new ImplementedProcessor()).invoke();
