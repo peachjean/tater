@@ -15,8 +15,10 @@ class AnnotationFieldVisitor extends SimpleElementVisitor6<FieldDescriptor, Util
     public FieldDescriptor visitExecutable(ExecutableElement e, Utils utils) {
         TypeMirror returnType = e.getReturnType();
         AnnotationValue defaultValue = e.getDefaultValue();
-        String defaultValueRep = defaultValue.accept(AnnotationFieldDefaultValueFormatter.INSTANCE, null);
         String typeRep = returnType.accept(TypeSourceFormatter.INSTANCE, utils);
+        final AnnotationFieldDefaultValueFormatter.TypeAndUtils typeAndUtils =
+                new AnnotationFieldDefaultValueFormatter.TypeAndUtils(utils, typeRep);
+        String defaultValueRep = defaultValue.accept(AnnotationFieldDefaultValueFormatter.INSTANCE, typeAndUtils);
         String name = e.getSimpleName().toString();
 
         FieldDescriptor element = new FieldDescriptor(name, typeRep, defaultValueRep);
