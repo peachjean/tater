@@ -1,5 +1,6 @@
 package net.peachjean.tater.utils;
 
+import com.google.common.collect.ObjectArrays;
 import net.peachjean.commons.test.junit.CumulativeAssertionRule;
 import net.peachjean.commons.test.junit.TmpDir;
 import net.peachjean.tater.test.CompilerHarness;
@@ -27,6 +28,7 @@ public class ImplementedProcessorTest {
                 JavaSourceFromText.builder("com.example.MyAnnotation")
                         .line("package com.example;")
                         .line("import net.peachjean.tater.utils.*;")
+                        .line("import java.lang.annotation.*;")
                         .line("@Implemented ")
                         .line("public @interface MyAnnotation {")
                         .line("  String value() default \"default\";")
@@ -37,10 +39,13 @@ public class ImplementedProcessorTest {
                         .line("  int[] intValArray() default 1;")
                         .line("  Class<? extends java.util.List>[] listTypeArray() default java.util.ArrayList.class;")
                         .line("  MyEnum[] enumValArray() default MyEnum.ONE;")
+                        .line("  Retention retentionPolicy() default @Retention(RetentionPolicy.SOURCE);")
+                        .line("  Retention[] retentionPolicyArray() default {@Retention(RetentionPolicy.SOURCE)};")
                         .line("}")
                 .build(),
                 JavaSourceFromText.builder("com.example.MyAnnotationAsserter")
                         .line("package com.example;")
+                        .line("import java.lang.annotation.*;")
                         .line("import net.peachjean.tater.test.*;")
                         .line("import net.peachjean.commons.test.junit.AssertionHandler;")
                         .line("public class MyAnnotationAsserter implements CompilerAsserter {")
@@ -50,6 +55,9 @@ public class ImplementedProcessorTest {
                         .line("    assertionHandler.assertEquals(1, a1.intVal());")
                         .line("    assertionHandler.assertEquals(java.util.ArrayList.class, a1.listType());")
                         .line("    assertionHandler.assertEquals(MyEnum.ONE, a1.enumVal());")
+                        .line("    assertionHandler.assertEquals(RetentionPolicy.SOURCE, a1.retentionPolicy().value());")
+                        .line("    assertionHandler.assertEquals(1, a1.retentionPolicyArray().length);")
+                        .line("    assertionHandler.assertEquals(RetentionPolicy.SOURCE, a1.retentionPolicyArray()[0].value());")
                         .line("    MyAnnotation a2 = MyAnnotationImpl.value(\"someValue\").intVal(2).build();")
                         .line("    assertionHandler.assertEquals(\"someValue\", a2.value());")
                         .line("    assertionHandler.assertEquals(2, a2.intVal());")

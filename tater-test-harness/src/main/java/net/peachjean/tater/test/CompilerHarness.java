@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.processing.Processor;
@@ -75,7 +76,8 @@ public class CompilerHarness
 		fileManager.setLocation(StandardLocation.SOURCE_OUTPUT, Arrays.asList(sourceDirectory));
 
 		JavaCompiler.CompilationTask compilerTask =
-				compiler.getTask(compilerOutput, fileManager, diagnostics, null, null, compilationUnits);
+				compiler.getTask(compilerOutput, fileManager, diagnostics,
+                        Collections.singleton("-Xlint:unchecked"), null, compilationUnits);
 		compilerTask.setProcessors(processors);
 
 		boolean success = compilerTask.call();

@@ -5,6 +5,7 @@ class FieldDescriptor {
     private final String type;
     private final String parameterType;
     private final String defaultValue;
+    private final boolean isArray;
 
     FieldDescriptor(String name, String type, String defaultValue) {
         this.name = name;
@@ -12,8 +13,10 @@ class FieldDescriptor {
         this.defaultValue = defaultValue;
         if(type.endsWith("[]")) {
             this.parameterType = type.substring(0, type.length() - 2) + " ...";
+            this.isArray = true;
         } else {
             this.parameterType = type;
+            this.isArray = false;
         }
     }
 
@@ -35,5 +38,9 @@ class FieldDescriptor {
 
     public String getDefaultValue() {
         return defaultValue;
+    }
+
+    public boolean isArray() {
+        return isArray;
     }
 }

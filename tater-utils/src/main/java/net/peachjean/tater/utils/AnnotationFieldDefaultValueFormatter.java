@@ -7,10 +7,12 @@ import com.google.common.collect.Iterables;
 import javax.annotation.Nullable;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
+import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleAnnotationValueVisitor6;
 import java.util.List;
+import java.util.Map;
 
 class AnnotationFieldDefaultValueFormatter extends SimpleAnnotationValueVisitor6<String, AnnotationFieldDefaultValueFormatter.TypeAndUtils> {
 
@@ -82,7 +84,20 @@ class AnnotationFieldDefaultValueFormatter extends SimpleAnnotationValueVisitor6
 
     @Override
     public String visitAnnotation(AnnotationMirror a, TypeAndUtils utils) {
-        throw new UnsupportedOperationException();
+        final String annotationType = a.getAnnotationType().accept(TypeSourceFormatter.INSTANCE, utils.getUtils());
+        StringBuilder sb = new StringBuilder("net.peachjean.tater.utils.AnnotationInvocationHandler.<")
+                .append(annotationType)
+                .append(">implement(")
+                .append(annotationType)
+                .append(".class, com.google.common.collect.ImmutableMap.<String, Object>builder()");
+        for(ExecutableElement element : a.getElementValues().keySet()) {
+            sb.append(".put(\"")
+                    .append(element.getSimpleName().toString())
+                    .append("\", ")
+                    .append(a.getElementValues().get(element).accept(this, utils))
+                    .append(")");
+        }
+        return sb.append(".build())").toString();
     }
 
     @Override
