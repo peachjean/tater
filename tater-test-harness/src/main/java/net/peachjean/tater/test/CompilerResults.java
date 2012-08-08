@@ -85,7 +85,7 @@ public class CompilerResults
      * @param asserterClass The name of the class from the undertest codebase that implements {@link CompilerAsserter}.
      * @throws ClassNotFoundException
      */
-    public void runAssertion(String asserterClass) throws ClassNotFoundException {
+    public void runAssertion(String asserterClass) throws Exception {
         ClassLoader cl = fileManager.getClassLoader(StandardLocation.CLASS_OUTPUT);
         Class<? extends CompilerAsserter> asserterType = (Class<? extends CompilerAsserter>) cl.loadClass(asserterClass);
         try {

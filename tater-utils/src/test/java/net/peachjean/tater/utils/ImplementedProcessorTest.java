@@ -22,7 +22,7 @@ public class ImplementedProcessorTest {
     public CumulativeAssertionRule accumulator = new CumulativeAssertionRule();
 
     @Test
-    public void testDefaultClass() throws IOException, ClassNotFoundException {
+    public void testDefaultClass() throws Exception {
         JavaFileObject[] sourceFiles = {
                 JavaSourceFromText.builder("com.example.MyAnnotation")
                         .line("package com.example;")
@@ -64,6 +64,56 @@ public class ImplementedProcessorTest {
                         .line("  ONE, TWO, THREE")
                         .line("}")
                 .build()
+        };
+        CompilerResults results = new CompilerHarness(tmpDir.getDir(), accumulator, sourceFiles)
+                .addProcessor(new ImplementedProcessor()).invoke();
+
+        for (Diagnostic<? extends JavaFileObject> diagnostic : results.getDiagnostics()) {
+            System.out.println(diagnostic);
+        }
+        results.assertNoOutput();
+        results.assertNumberOfDiagnostics(Diagnostic.Kind.ERROR, 0);
+        results.assertNumberOfDiagnostics(Diagnostic.Kind.WARNING, 0);
+
+        results.runAssertion("com.example.MyAnnotationAsserter");
+    }
+
+    @Test
+    public void testStandardMethods() throws Exception {
+        JavaFileObject[] sourceFiles = {
+                JavaSourceFromText.builder("com.example.MyAnnotation")
+                        .line("package com.example;")
+                        .line("import net.peachjean.tater.utils.*;")
+                        .line("import java.lang.annotation.*;")
+                        .line("@Implemented @Retention(RetentionPolicy.RUNTIME)")
+                        .line("public @interface MyAnnotation {")
+                        .line("  String value() default \"default\";")
+                        .line("  int intVal() default 1;")
+                        .line("  Class<? extends java.util.List> listType() default java.util.ArrayList.class;")
+                        .line("  MyEnum enumVal() default MyEnum.ONE;")
+                        .line("  String[] valueArray() default {\"default\"};")
+                        .line("}")
+                        .build(),
+                JavaSourceFromText.builder("com.example.MyAnnotationAsserter")
+                        .line("package com.example;")
+                        .line("import net.peachjean.tater.test.*;")
+                        .line("import net.peachjean.commons.test.junit.AssertionHandler;")
+                        .line("public class MyAnnotationAsserter extends StandardMethodTestSupport<MyAnnotation> {")
+                        .line("  public MyAnnotationAsserter() {")
+                        .line("    super(MyAnnotation.class);")
+                        .line("  }")
+                        .line("  @MyAnnotation")
+                        .line("  public MyAnnotation allDefaults() {")
+                        .line("    return MyAnnotationImpl.build();")
+                        .line("  }")
+                        .line("}")
+                        .build(),
+                JavaSourceFromText.builder("com.example.MyEnum")
+                        .line("package com.example;")
+                        .line("public enum MyEnum {")
+                        .line("  ONE, TWO, THREE")
+                        .line("}")
+                        .build()
         };
         CompilerResults results = new CompilerHarness(tmpDir.getDir(), accumulator, sourceFiles)
                 .addProcessor(new ImplementedProcessor()).invoke();

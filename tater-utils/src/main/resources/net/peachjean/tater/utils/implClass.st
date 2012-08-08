@@ -1,5 +1,7 @@
 $if(annotationType.packageName)$package $annotationType.packageName$;$endif$
 
+import org.apache.commons.lang3.AnnotationUtils;
+
 public class $annotationType.simpleName$Impl implements $annotationType.simpleName$ {
 
 $annotationType.fields:{field|
@@ -18,6 +20,20 @@ $annotationType.fields:{field|
 
     public Class<$annotationType.simpleName$> annotationType() {
       return $annotationType.simpleName$.class;
+    }
+
+    public int hashCode() {
+      return AnnotationUtils.hashCode(this);
+    }
+
+    public boolean equals(Object other) {
+      return other instanceof $annotationType.simpleName$
+         ? AnnotationUtils.equals(this, ($annotationType.simpleName$) other)
+         : false;
+    }
+
+    public String toString() {
+      return AnnotationUtils.toString(this);
     }
 
     public static $annotationType.simpleName$ build() {
