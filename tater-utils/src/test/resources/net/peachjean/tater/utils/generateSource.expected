@@ -2,112 +2,113 @@ package com.example.testa;
 
 import org.apache.commons.lang3.AnnotationUtils;
 
+@SuppressWarnings({"UnusedDeclaration", "ClassExplicitlyAnnotation"})
 public class MyAnnotationImpl implements MyAnnotation {
 
     private final java.lang.String field1;
 
     public java.lang.String field1() {
-      return field1;
+        return field1;
     }
     private final int field2;
 
     public int field2() {
-      return field2;
+        return field2;
     }
     private final float field3;
 
     public float field3() {
-      return field3;
+        return field3;
     }
     private final long field4;
 
     public long field4() {
-      return field4;
+        return field4;
     }
     private final double field5;
 
     public double field5() {
-      return field5;
+        return field5;
     }
     private final java.lang.Class field6;
 
     public java.lang.Class field6() {
-      return field6;
+        return field6;
     }
     private final net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum field7;
 
     public net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum field7() {
-      return field7;
+        return field7;
     }
     private final byte field8;
 
     public byte field8() {
-      return field8;
+        return field8;
     }
     private final char field9;
 
     public char field9() {
-      return field9;
+        return field9;
     }
     private final short field10;
 
     public short field10() {
-      return field10;
+        return field10;
     }
     private final boolean field11;
 
     public boolean field11() {
-      return field11;
+        return field11;
     }
     private final java.lang.String[] array1;
 
     public java.lang.String[] array1() {
-      return array1;
+        return array1.clone();
     }
     private final int[] array2;
 
     public int[] array2() {
-      return array2;
+        return array2.clone();
     }
     private final float[] array3;
 
     public float[] array3() {
-      return array3;
+        return array3.clone();
     }
     private final long[] array4;
 
     public long[] array4() {
-      return array4;
+        return array4.clone();
     }
     private final double[] array5;
 
     public double[] array5() {
-      return array5;
+        return array5.clone();
     }
     private final java.lang.Class[] array6;
 
     public java.lang.Class[] array6() {
-      return array6;
+        return array6.clone();
     }
     private final byte[] array8;
 
     public byte[] array8() {
-      return array8;
+        return array8.clone();
     }
     private final char[] array9;
 
     public char[] array9() {
-      return array9;
+        return array9.clone();
     }
     private final short[] array10;
 
     public short[] array10() {
-      return array10;
+        return array10.clone();
     }
     private final boolean[] array11;
 
     public boolean[] array11() {
-      return array11;
+        return array11.clone();
     }
 
 
@@ -144,6 +145,7 @@ public class MyAnnotationImpl implements MyAnnotation {
       return AnnotationUtils.hashCode(this);
     }
 
+    @SuppressWarnings("SimplifiableConditionalExpression")
     public boolean equals(Object other) {
       return other instanceof MyAnnotation
          ? AnnotationUtils.equals(this, (MyAnnotation) other)
@@ -158,66 +160,87 @@ public class MyAnnotationImpl implements MyAnnotation {
       return new Builder().build();
     }
 
+    @SuppressWarnings("unchecked")
     public static Builder field1(final java.lang.String v) {
       return new Builder().field1(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field2(final int v) {
       return new Builder().field2(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field3(final float v) {
       return new Builder().field3(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field4(final long v) {
       return new Builder().field4(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field5(final double v) {
       return new Builder().field5(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field6(final java.lang.Class v) {
       return new Builder().field6(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field7(final net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum v) {
       return new Builder().field7(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field8(final byte v) {
       return new Builder().field8(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field9(final char v) {
       return new Builder().field9(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field10(final short v) {
       return new Builder().field10(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder field11(final boolean v) {
       return new Builder().field11(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array1(final java.lang.String ... v) {
       return new Builder().array1(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array2(final int ... v) {
       return new Builder().array2(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array3(final float ... v) {
       return new Builder().array3(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array4(final long ... v) {
       return new Builder().array4(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array5(final double ... v) {
       return new Builder().array5(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array6(final java.lang.Class ... v) {
       return new Builder().array6(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array8(final byte ... v) {
       return new Builder().array8(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array9(final char ... v) {
       return new Builder().array9(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array10(final short ... v) {
       return new Builder().array10(v);
     }
+    @SuppressWarnings("unchecked")
     public static Builder array11(final boolean ... v) {
       return new Builder().array11(v);
     }
@@ -228,128 +251,170 @@ public class MyAnnotationImpl implements MyAnnotation {
         return new MyAnnotationImpl(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, array1, array2, array3, array4, array5, array6, array8, array9, array10, array11);
       }
 
+         @SuppressWarnings("unchecked")
          private java.lang.String field1 = "value1";
 
+         @SuppressWarnings("unchecked")
          public Builder field1(final java.lang.String v) {
            this.field1 = v;
            return this;
          }
-             private int field2 = 5;
+             @SuppressWarnings("unchecked")
+         private int field2 = 5;
 
+         @SuppressWarnings("unchecked")
          public Builder field2(final int v) {
            this.field2 = v;
            return this;
          }
-             private float field3 = 5.5f;
+             @SuppressWarnings("unchecked")
+         private float field3 = 5.5f;
 
+         @SuppressWarnings("unchecked")
          public Builder field3(final float v) {
            this.field3 = v;
            return this;
          }
-             private long field4 = 5l;
+             @SuppressWarnings("unchecked")
+         private long field4 = 5l;
 
+         @SuppressWarnings("unchecked")
          public Builder field4(final long v) {
            this.field4 = v;
            return this;
          }
-             private double field5 = 5.5d;
+             @SuppressWarnings("unchecked")
+         private double field5 = 5.5d;
 
+         @SuppressWarnings("unchecked")
          public Builder field5(final double v) {
            this.field5 = v;
            return this;
          }
-             private java.lang.Class field6 = com.example.testa.MyAnnotation.class;
+             @SuppressWarnings("unchecked")
+         private java.lang.Class field6 = com.example.testa.MyAnnotation.class;
 
+         @SuppressWarnings("unchecked")
          public Builder field6(final java.lang.Class v) {
            this.field6 = v;
            return this;
          }
-             private net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum field7 = ONE;
+             @SuppressWarnings("unchecked")
+         private net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum field7 = ONE;
 
+         @SuppressWarnings("unchecked")
          public Builder field7(final net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum v) {
            this.field7 = v;
            return this;
          }
-             private byte field8 = 5;
+             @SuppressWarnings("unchecked")
+         private byte field8 = 5;
 
+         @SuppressWarnings("unchecked")
          public Builder field8(final byte v) {
            this.field8 = v;
            return this;
          }
-             private char field9 = 'c';
+             @SuppressWarnings("unchecked")
+         private char field9 = 'c';
 
+         @SuppressWarnings("unchecked")
          public Builder field9(final char v) {
            this.field9 = v;
            return this;
          }
-             private short field10 = 3;
+             @SuppressWarnings("unchecked")
+         private short field10 = 3;
 
+         @SuppressWarnings("unchecked")
          public Builder field10(final short v) {
            this.field10 = v;
            return this;
          }
-             private boolean field11 = true;
+             @SuppressWarnings("unchecked")
+         private boolean field11 = true;
 
+         @SuppressWarnings("unchecked")
          public Builder field11(final boolean v) {
            this.field11 = v;
            return this;
          }
-             private java.lang.String[] array1 = new String[] {"value1"};
+             @SuppressWarnings("unchecked")
+         private java.lang.String[] array1 = new String[] {"value1"};
 
+         @SuppressWarnings("unchecked")
          public Builder array1(final java.lang.String ... v) {
            this.array1 = v;
            return this;
          }
-             private int[] array2 = new int[] {5};
+             @SuppressWarnings("unchecked")
+         private int[] array2 = new int[] {5};
 
+         @SuppressWarnings("unchecked")
          public Builder array2(final int ... v) {
            this.array2 = v;
            return this;
          }
-             private float[] array3 = new float[] {5.5f};
+             @SuppressWarnings("unchecked")
+         private float[] array3 = new float[] {5.5f};
 
+         @SuppressWarnings("unchecked")
          public Builder array3(final float ... v) {
            this.array3 = v;
            return this;
          }
-             private long[] array4 = new long[] {5l};
+             @SuppressWarnings("unchecked")
+         private long[] array4 = new long[] {5l};
 
+         @SuppressWarnings("unchecked")
          public Builder array4(final long ... v) {
            this.array4 = v;
            return this;
          }
-             private double[] array5 = new double[] {5.5d};
+             @SuppressWarnings("unchecked")
+         private double[] array5 = new double[] {5.5d};
 
+         @SuppressWarnings("unchecked")
          public Builder array5(final double ... v) {
            this.array5 = v;
            return this;
          }
-             private java.lang.Class[] array6 = new Class[] {com.example.testa.MyAnnotation.class};
+             @SuppressWarnings("unchecked")
+         private java.lang.Class[] array6 = new Class[] {com.example.testa.MyAnnotation.class};
 
+         @SuppressWarnings("unchecked")
          public Builder array6(final java.lang.Class ... v) {
            this.array6 = v;
            return this;
          }
-             private byte[] array8 = new byte[] {5};
+             @SuppressWarnings("unchecked")
+         private byte[] array8 = new byte[] {5};
 
+         @SuppressWarnings("unchecked")
          public Builder array8(final byte ... v) {
            this.array8 = v;
            return this;
          }
-             private char[] array9 = new char[] {'c'};
+             @SuppressWarnings("unchecked")
+         private char[] array9 = new char[] {'c'};
 
+         @SuppressWarnings("unchecked")
          public Builder array9(final char ... v) {
            this.array9 = v;
            return this;
          }
-             private short[] array10 = new short[] {3};
+             @SuppressWarnings("unchecked")
+         private short[] array10 = new short[] {3};
 
+         @SuppressWarnings("unchecked")
          public Builder array10(final short ... v) {
            this.array10 = v;
            return this;
          }
-             private boolean[] array11 = new boolean[] {true};
+             @SuppressWarnings("unchecked")
+         private boolean[] array11 = new boolean[] {true};
 
+         @SuppressWarnings("unchecked")
          public Builder array11(final boolean ... v) {
            this.array11 = v;
            return this;

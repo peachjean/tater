@@ -61,7 +61,8 @@ public class ImplementedDescriptorTest {
         });
 
         final URL resource = Resources.getResource(this.getClass(), "generateSource.expected");
-        if(System.getProperties().keySet().contains("regenerateExpectedCode")) {
+        if(System.getProperties().keySet().contains("regenerateExpectedCode")
+                && Boolean.valueOf(System.getProperty("regenerateExpectedCode"))) {
             File expectedOutput = new File("src/test/resources/net/peachjean/tater/utils/generateSource.expected");
             Files.write(output.toString(), expectedOutput, Charsets.UTF_8);
         }
