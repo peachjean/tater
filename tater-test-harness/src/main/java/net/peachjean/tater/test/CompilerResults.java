@@ -86,7 +86,7 @@ public class CompilerResults
      * @throws ClassNotFoundException
      */
     public void runAssertion(String asserterClass) throws Exception {
-        ClassLoader cl = fileManager.getClassLoader(StandardLocation.CLASS_OUTPUT);
+        ClassLoader cl = createClassLoader();
         Class<? extends CompilerAsserter> asserterType = (Class<? extends CompilerAsserter>) cl.loadClass(asserterClass);
         try {
             CompilerAsserter asserter = asserterType.newInstance();
@@ -96,5 +96,9 @@ public class CompilerResults
         } catch (IllegalAccessException e) {
             this.assertionHandler.fail(e.getMessage());
         }
+    }
+
+    private ClassLoader createClassLoader() {
+        return fileManager.getClassLoader(StandardLocation.CLASS_OUTPUT);
     }
 }

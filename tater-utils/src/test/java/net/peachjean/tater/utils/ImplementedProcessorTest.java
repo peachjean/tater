@@ -34,9 +34,9 @@ public class ImplementedProcessorTest {
                         .line("  Class<? extends java.util.List> listType() default java.util.ArrayList.class;")
                         .line("  MyEnum enumVal() default MyEnum.ONE;")
                         .line("  String[] valueArray() default {\"default\"};")
-//                        .line("  int intVal() default 1;")
-//                        .line("  Class<? extends java.util.List> listType() default java.util.ArrayList.class;")
-//                        .line("  MyEnum enumVal() default MyEnum.ONE;")
+                        .line("  int[] intValArray() default 1;")
+                        .line("  Class<? extends java.util.List>[] listTypeArray() default java.util.ArrayList.class;")
+                        .line("  MyEnum[] enumValArray() default MyEnum.ONE;")
                         .line("}")
                 .build(),
                 JavaSourceFromText.builder("com.example.MyAnnotationAsserter")

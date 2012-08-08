@@ -87,7 +87,18 @@ class AnnotationFieldDefaultValueFormatter extends SimpleAnnotationValueVisitor6
 
     @Override
     public String visitArray(List<? extends AnnotationValue> vals, TypeAndUtils utils) {
-        return String.format("new %s { %s }", utils.getType(), Joiner.on(", ").join(transformValues(vals, utils)));
+        return String.format("(%s) new %s { %s }", utils.getType(), rawType(utils.getType()), Joiner.on(", ").join(transformValues(vals, utils)));
+    }
+
+    private String rawType(String type) {
+        int genericStart = type.indexOf("<");
+        if(genericStart >= 0) {
+            int genericEnd = type.lastIndexOf(">");
+            String genericPart = type.substring(genericStart, genericEnd + 1);
+            return type.replace(genericPart, "");
+        } else {
+            return type;
+        }
     }
 
     private Iterable<String> transformValues(List<? extends AnnotationValue> vals, final TypeAndUtils utils) {
