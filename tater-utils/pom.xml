@@ -33,7 +33,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>pl.ncdc.differentia</groupId>
+            <groupId>net.peachjean.differentia</groupId>
             <artifactId>differentia-javaica</artifactId>
             <scope>test</scope>
             <exclusions>
