@@ -39,17 +39,17 @@ public class ImplementedDescriptorTest {
                         new FieldDescriptor("field9", char.class.getName(), "'c'"),
                         new FieldDescriptor("field10", short.class.getName(), "3"),
                         new FieldDescriptor("field11", boolean.class.getName(), "true"),
-                        new FieldDescriptor("array1", String.class.getName() + "[]", "new String[] {\"value1\"}"),
-                        new FieldDescriptor("array2", int.class.getName() + "[]", "new int[] {5}"),
-                        new FieldDescriptor("array3", float.class.getName() + "[]", "new float[] {5.5f}"),
-                        new FieldDescriptor("array4", long.class.getName() + "[]", "new long[] {5l}"),
-                        new FieldDescriptor("array5", double.class.getName() + "[]", "new double[] {5.5d}"),
-                        new FieldDescriptor("array6", Class.class.getName() + "[]", "new Class[] {com.example.testa.MyAnnotation.class}"),
-//                        new FieldDescriptor("array7", typeFormatter.formatEnum(new MyEnum[0]) MyEnum.class.getName() + "[]", "new MyEnum[] {ONE}"),
-                        new FieldDescriptor("array8", byte.class.getName() + "[]", "new byte[] {5}"),
-                        new FieldDescriptor("array9", char.class.getName() + "[]", "new char[] {'c'}"),
-                        new FieldDescriptor("array10", short.class.getName() + "[]", "new short[] {3}"),
-                        new FieldDescriptor("array11", boolean.class.getName() + "[]", "new boolean[] {true}")
+                        new FieldDescriptor("array1", arrayName(String.class), "new String[] {\"value1\"}"),
+                        new FieldDescriptor("array2", arrayName(int.class), "new int[] {5}"),
+                        new FieldDescriptor("array3", arrayName(float.class), "new float[] {5.5f}"),
+                        new FieldDescriptor("array4", arrayName(long.class), "new long[] {5l}"),
+                        new FieldDescriptor("array5", arrayName(double.class), "new double[] {5.5d}"),
+                        new FieldDescriptor("array6", arrayName(Class.class), "new Class[] {com.example.testa.MyAnnotation.class}"),
+                        new FieldDescriptor("array7", arrayName(MyEnum.class), "new MyEnum[] {ONE}"),
+                        new FieldDescriptor("array8", arrayName(byte.class), "new byte[] {5}"),
+                        new FieldDescriptor("array9", arrayName(char.class), "new char[] {'c'}"),
+                        new FieldDescriptor("array10", arrayName(short.class), "new short[] {3}"),
+                        new FieldDescriptor("array11", arrayName(boolean.class), "new boolean[] {true}")
         ));
 
         final StringWriter output = new StringWriter();
@@ -71,6 +71,10 @@ public class ImplementedDescriptorTest {
                 Charsets.UTF_8).getInput();
 
         DifferentiaAssert.assertSourcesEqual(expected, new StringReader(output.toString()), false, true);
+    }
+
+    private String arrayName(final Class<?> type) {
+        return (type.getName() + "[]").replace("$", ".");
     }
 
     public static enum MyEnum {

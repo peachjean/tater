@@ -90,6 +90,11 @@ public class MyAnnotationImpl implements MyAnnotation {
     public java.lang.Class[] array6() {
         return array6.clone();
     }
+    private final net.peachjean.tater.utils.ImplementedDescriptorTest.MyEnum[] array7;
+
+    public net.peachjean.tater.utils.ImplementedDescriptorTest.MyEnum[] array7() {
+        return array7.clone();
+    }
     private final byte[] array8;
 
     public byte[] array8() {
@@ -112,7 +117,7 @@ public class MyAnnotationImpl implements MyAnnotation {
     }
 
 
-    private MyAnnotationImpl(final java.lang.String field1, final int field2, final float field3, final long field4, final double field5, final java.lang.Class field6, final net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum field7, final byte field8, final char field9, final short field10, final boolean field11, final java.lang.String[] array1, final int[] array2, final float[] array3, final long[] array4, final double[] array5, final java.lang.Class[] array6, final byte[] array8, final char[] array9, final short[] array10, final boolean[] array11) {
+    private MyAnnotationImpl(final java.lang.String field1, final int field2, final float field3, final long field4, final double field5, final java.lang.Class field6, final net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum field7, final byte field8, final char field9, final short field10, final boolean field11, final java.lang.String[] array1, final int[] array2, final float[] array3, final long[] array4, final double[] array5, final java.lang.Class[] array6, final net.peachjean.tater.utils.ImplementedDescriptorTest.MyEnum[] array7, final byte[] array8, final char[] array9, final short[] array10, final boolean[] array11) {
               this.field1 = field1;
                     this.field2 = field2;
                     this.field3 = field3;
@@ -130,6 +135,7 @@ public class MyAnnotationImpl implements MyAnnotation {
                     this.array4 = array4;
                     this.array5 = array5;
                     this.array6 = array6;
+                    this.array7 = array7;
                     this.array8 = array8;
                     this.array9 = array9;
                     this.array10 = array10;
@@ -229,6 +235,10 @@ public class MyAnnotationImpl implements MyAnnotation {
       return new Builder().array6(v);
     }
     @SuppressWarnings("unchecked")
+    public static Builder array7(final net.peachjean.tater.utils.ImplementedDescriptorTest.MyEnum ... v) {
+      return new Builder().array7(v);
+    }
+    @SuppressWarnings("unchecked")
     public static Builder array8(final byte ... v) {
       return new Builder().array8(v);
     }
@@ -248,7 +258,7 @@ public class MyAnnotationImpl implements MyAnnotation {
 
     public static class Builder {
       MyAnnotation build() {
-        return new MyAnnotationImpl(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, array1, array2, array3, array4, array5, array6, array8, array9, array10, array11);
+        return new MyAnnotationImpl(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, array1, array2, array3, array4, array5, array6, array7, array8, array9, array10, array11);
       }
 
          @SuppressWarnings("unchecked")
@@ -385,6 +395,14 @@ public class MyAnnotationImpl implements MyAnnotation {
          @SuppressWarnings("unchecked")
          public Builder array6(final java.lang.Class ... v) {
            this.array6 = v;
+           return this;
+         }
+             @SuppressWarnings("unchecked")
+         private net.peachjean.tater.utils.ImplementedDescriptorTest.MyEnum[] array7 = new MyEnum[] {ONE};
+
+         @SuppressWarnings("unchecked")
+         public Builder array7(final net.peachjean.tater.utils.ImplementedDescriptorTest.MyEnum ... v) {
+           this.array7 = v;
            return this;
          }
              @SuppressWarnings("unchecked")
