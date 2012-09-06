@@ -1,11 +1,17 @@
 package net.peachjean.tater.utils;
 
+import com.google.common.base.Optional;
+
 class FieldDescriptor {
     private final String name;
     private final String type;
     private final String parameterType;
     private final String defaultValue;
     private final boolean isArray;
+
+    FieldDescriptor(String name, String type, Optional<String> defaultValue) {
+	    this(name, type, defaultValue.or("null"));
+    }
 
     FieldDescriptor(String name, String type, String defaultValue) {
         this.name = name;

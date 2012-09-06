@@ -39,6 +39,7 @@ public class ImplementedDescriptorTest {
                         new FieldDescriptor("field9", char.class.getName(), "'c'"),
                         new FieldDescriptor("field10", short.class.getName(), "3"),
                         new FieldDescriptor("field11", boolean.class.getName(), "true"),
+		                new FieldDescriptor("noDefault", String.class.getName(), "null"),
                         new FieldDescriptor("array1", arrayName(String.class), "new String[] {\"value1\"}"),
                         new FieldDescriptor("array2", arrayName(int.class), "new int[] {5}"),
                         new FieldDescriptor("array3", arrayName(float.class), "new float[] {5.5f}"),

@@ -158,4 +158,56 @@ public class ImplementedProcessorTest {
         }
 
     }
+
+	@Test
+	public void testNoDefaultValue() throws Exception {
+		JavaFileObject[] sourceFiles = {
+				JavaSourceFromText.builder("com.example.MyAnnotation")
+						.line("package com.example;")
+						.line("import net.peachjean.tater.utils.*;")
+						.line("import java.lang.annotation.*;")
+						.line("@Implemented ")
+						.line("public @interface MyAnnotation {")
+						.line("  String value();")
+						.line("}")
+						.build(),
+				JavaSourceFromText.builder("com.example.MyAnnotationAsserter")
+						.line("package com.example;")
+						.line("import java.lang.annotation.*;")
+						.line("import net.peachjean.tater.test.*;")
+						.line("import net.peachjean.commons.test.junit.AssertionHandler;")
+						.line("public class MyAnnotationAsserter implements CompilerAsserter {")
+						.line("  public void doAssertions(AssertionHandler assertionHandler) {")
+						.line("    try {")
+						.line("      MyAnnotation a1 = MyAnnotationImpl.build();")
+						.line("      assertionHandler.fail(\"NullPointerException expected when no value supplied and no default value.\");")
+						.line("    } catch (NullPointerException e) {")
+						.line("      // good!  we expected this!")
+						.line("    }")
+						.line("    MyAnnotation a2 = MyAnnotationImpl.value(\"someValue\").build();")
+						.line("    assertionHandler.assertEquals(\"someValue\", a2.value());")
+						.line("    MyAnnotation a3 = MyAnnotationImpl.build(\"someValue\");")
+						.line("    assertionHandler.assertEquals(\"someValue\", a3.value());")
+						.line("  }")
+						.line("}")
+						.build(),
+				JavaSourceFromText.builder("com.example.MyEnum")
+						.line("package com.example;")
+						.line("public enum MyEnum {")
+						.line("  ONE, TWO, THREE")
+						.line("}")
+						.build()
+		};
+		CompilerResults results = new CompilerHarness(tmpDir.getDir(), accumulator, sourceFiles)
+				.addProcessor(new ImplementedProcessor()).invoke();
+
+		for (Diagnostic<? extends JavaFileObject> diagnostic : results.getDiagnostics()) {
+			System.out.println(diagnostic);
+		}
+		results.assertNoOutput();
+		results.assertNumberOfDiagnostics(Diagnostic.Kind.ERROR, 0);
+		results.assertNumberOfDiagnostics(Diagnostic.Kind.WARNING, 0);
+
+		results.runAssertion("com.example.MyAnnotationAsserter");
+	}
 }

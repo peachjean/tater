@@ -1,5 +1,7 @@
 package net.peachjean.tater.utils;
 
+import com.google.common.base.Optional;
+
 import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.type.TypeMirror;
@@ -18,7 +20,7 @@ class AnnotationFieldVisitor extends SimpleElementVisitor6<FieldDescriptor, Util
         String typeRep = returnType.accept(TypeSourceFormatter.INSTANCE, utils);
         final AnnotationFieldDefaultValueFormatter.TypeAndUtils typeAndUtils =
                 new AnnotationFieldDefaultValueFormatter.TypeAndUtils(utils, typeRep);
-        String defaultValueRep = defaultValue.accept(AnnotationFieldDefaultValueFormatter.INSTANCE, typeAndUtils);
+        Optional<String> defaultValueRep = defaultValue == null ? Optional.<String>absent() : Optional.of(defaultValue.accept(AnnotationFieldDefaultValueFormatter.INSTANCE, typeAndUtils));
         String name = e.getSimpleName().toString();
 
         FieldDescriptor element = new FieldDescriptor(name, typeRep, defaultValueRep);

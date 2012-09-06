@@ -1,6 +1,7 @@
 package com.example.testa;
 
 import org.apache.commons.lang3.AnnotationUtils;
+import com.google.common.base.Preconditions;
 
 @SuppressWarnings({"UnusedDeclaration", "ClassExplicitlyAnnotation"})
 public class MyAnnotationImpl implements MyAnnotation {
@@ -60,6 +61,11 @@ public class MyAnnotationImpl implements MyAnnotation {
     public boolean field11() {
         return field11;
     }
+    private final java.lang.String noDefault;
+
+    public java.lang.String noDefault() {
+        return noDefault;
+    }
     private final java.lang.String[] array1;
 
     public java.lang.String[] array1() {
@@ -117,29 +123,30 @@ public class MyAnnotationImpl implements MyAnnotation {
     }
 
 
-    private MyAnnotationImpl(final java.lang.String field1, final int field2, final float field3, final long field4, final double field5, final java.lang.Class field6, final net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum field7, final byte field8, final char field9, final short field10, final boolean field11, final java.lang.String[] array1, final int[] array2, final float[] array3, final long[] array4, final double[] array5, final java.lang.Class[] array6, final net.peachjean.tater.utils.ImplementedDescriptorTest.MyEnum[] array7, final byte[] array8, final char[] array9, final short[] array10, final boolean[] array11) {
-              this.field1 = field1;
-                    this.field2 = field2;
-                    this.field3 = field3;
-                    this.field4 = field4;
-                    this.field5 = field5;
-                    this.field6 = field6;
-                    this.field7 = field7;
-                    this.field8 = field8;
-                    this.field9 = field9;
-                    this.field10 = field10;
-                    this.field11 = field11;
-                    this.array1 = array1;
-                    this.array2 = array2;
-                    this.array3 = array3;
-                    this.array4 = array4;
-                    this.array5 = array5;
-                    this.array6 = array6;
-                    this.array7 = array7;
-                    this.array8 = array8;
-                    this.array9 = array9;
-                    this.array10 = array10;
-                    this.array11 = array11;
+    private MyAnnotationImpl(final java.lang.String field1, final int field2, final float field3, final long field4, final double field5, final java.lang.Class field6, final net.peachjean.tater.utils.ImplementedDescriptorTest$MyEnum field7, final byte field8, final char field9, final short field10, final boolean field11, final java.lang.String noDefault, final java.lang.String[] array1, final int[] array2, final float[] array3, final long[] array4, final double[] array5, final java.lang.Class[] array6, final net.peachjean.tater.utils.ImplementedDescriptorTest.MyEnum[] array7, final byte[] array8, final char[] array9, final short[] array10, final boolean[] array11) {
+              this.field1 = Preconditions.checkNotNull(field1, "field1 has no default value.  It must be specified.");
+                    this.field2 = Preconditions.checkNotNull(field2, "field2 has no default value.  It must be specified.");
+                    this.field3 = Preconditions.checkNotNull(field3, "field3 has no default value.  It must be specified.");
+                    this.field4 = Preconditions.checkNotNull(field4, "field4 has no default value.  It must be specified.");
+                    this.field5 = Preconditions.checkNotNull(field5, "field5 has no default value.  It must be specified.");
+                    this.field6 = Preconditions.checkNotNull(field6, "field6 has no default value.  It must be specified.");
+                    this.field7 = Preconditions.checkNotNull(field7, "field7 has no default value.  It must be specified.");
+                    this.field8 = Preconditions.checkNotNull(field8, "field8 has no default value.  It must be specified.");
+                    this.field9 = Preconditions.checkNotNull(field9, "field9 has no default value.  It must be specified.");
+                    this.field10 = Preconditions.checkNotNull(field10, "field10 has no default value.  It must be specified.");
+                    this.field11 = Preconditions.checkNotNull(field11, "field11 has no default value.  It must be specified.");
+                    this.noDefault = Preconditions.checkNotNull(noDefault, "noDefault has no default value.  It must be specified.");
+                    this.array1 = Preconditions.checkNotNull(array1, "array1 has no default value.  It must be specified.");
+                    this.array2 = Preconditions.checkNotNull(array2, "array2 has no default value.  It must be specified.");
+                    this.array3 = Preconditions.checkNotNull(array3, "array3 has no default value.  It must be specified.");
+                    this.array4 = Preconditions.checkNotNull(array4, "array4 has no default value.  It must be specified.");
+                    this.array5 = Preconditions.checkNotNull(array5, "array5 has no default value.  It must be specified.");
+                    this.array6 = Preconditions.checkNotNull(array6, "array6 has no default value.  It must be specified.");
+                    this.array7 = Preconditions.checkNotNull(array7, "array7 has no default value.  It must be specified.");
+                    this.array8 = Preconditions.checkNotNull(array8, "array8 has no default value.  It must be specified.");
+                    this.array9 = Preconditions.checkNotNull(array9, "array9 has no default value.  It must be specified.");
+                    this.array10 = Preconditions.checkNotNull(array10, "array10 has no default value.  It must be specified.");
+                    this.array11 = Preconditions.checkNotNull(array11, "array11 has no default value.  It must be specified.");
             
     }
 
@@ -211,6 +218,10 @@ public class MyAnnotationImpl implements MyAnnotation {
       return new Builder().field11(v);
     }
     @SuppressWarnings("unchecked")
+    public static Builder noDefault(final java.lang.String v) {
+      return new Builder().noDefault(v);
+    }
+    @SuppressWarnings("unchecked")
     public static Builder array1(final java.lang.String ... v) {
       return new Builder().array1(v);
     }
@@ -258,7 +269,7 @@ public class MyAnnotationImpl implements MyAnnotation {
 
     public static class Builder {
       MyAnnotation build() {
-        return new MyAnnotationImpl(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, array1, array2, array3, array4, array5, array6, array7, array8, array9, array10, array11);
+        return new MyAnnotationImpl(field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, noDefault, array1, array2, array3, array4, array5, array6, array7, array8, array9, array10, array11);
       }
 
          @SuppressWarnings("unchecked")
@@ -347,6 +358,14 @@ public class MyAnnotationImpl implements MyAnnotation {
          @SuppressWarnings("unchecked")
          public Builder field11(final boolean v) {
            this.field11 = v;
+           return this;
+         }
+             @SuppressWarnings("unchecked")
+         private java.lang.String noDefault = null;
+
+         @SuppressWarnings("unchecked")
+         public Builder noDefault(final java.lang.String v) {
+           this.noDefault = v;
            return this;
          }
              @SuppressWarnings("unchecked")

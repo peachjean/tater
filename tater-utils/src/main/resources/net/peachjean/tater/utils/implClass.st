@@ -2,6 +2,7 @@ $! http://www.antlr.org/wiki/display/ST/StringTemplate+cheat+sheet !$
 $if(annotationType.packageName)$package $annotationType.packageName$;$endif$
 
 import org.apache.commons.lang3.AnnotationUtils;
+import com.google.common.base.Preconditions;
 
 @SuppressWarnings({"UnusedDeclaration", "ClassExplicitlyAnnotation"})
 public class $annotationType.simpleName$Impl implements $annotationType.simpleName$ {
@@ -20,7 +21,7 @@ $annotationType.fields:{field|
 
     private $annotationType.simpleName$Impl($annotationType.fields:{field|final $field.type$ $field.name$}; separator=", "$) {
       $annotationType.fields:{field|
-        this.$field.name$ = $field.name$;
+        this.$field.name$ = Preconditions.checkNotNull($field.name$, "$field.name$ has no default value.  It must be specified.");
       }$
     }
 
