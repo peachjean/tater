@@ -37,7 +37,6 @@
         </developer>
     </developers>
     <properties>
-        <pjcommons.version>0.2</pjcommons.version>
         <stringtemplate.version>3.2.1</stringtemplate.version>
     </properties>
     <modules>
@@ -109,7 +108,7 @@
             <dependency>
                 <groupId>net.peachjean.commons</groupId>
                 <artifactId>pjcommons-test</artifactId>
-                <version>${pjcommons.version}</version>
+                <version>0.3-SNAPSHOT</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -149,4 +148,19 @@
             </plugins>
         </pluginManagement>
     </build>
+
+	<repositories>
+		<repository>
+			<id>oss-snapshots</id>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<checksumPolicy>fail</checksumPolicy>
+				<updatePolicy>interval:2h</updatePolicy>
+			</snapshots>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
 </project>
