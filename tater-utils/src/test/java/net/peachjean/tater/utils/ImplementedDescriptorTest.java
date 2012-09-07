@@ -26,7 +26,7 @@ public class ImplementedDescriptorTest {
         AnnotationFieldDefaultValueFormatter defaultValueFormatter = AnnotationFieldDefaultValueFormatter.INSTANCE;
         AnnotationFieldTypeFormatter typeFormatter = AnnotationFieldTypeFormatter.INSTANCE;
 
-        ImplementedDescriptor underTest = new ImplementedDescriptor("com.example.testa", "MyAnnotation",
+        ImplementedDescriptor underTest = new ImplementedDescriptor(true, "com.example.testa", "MyAnnotation",
                 "com.example.testa.MyAnnotation", ImmutableList.of(
                         new FieldDescriptor("field1", String.class.getName(), "\"value1\""),
                         new FieldDescriptor("field2", int.class.getName(), "5"),

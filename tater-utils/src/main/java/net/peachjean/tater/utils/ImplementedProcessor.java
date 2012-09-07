@@ -43,7 +43,8 @@ public class ImplementedProcessor extends AbstractProcessor {
                         implemented.value();
                 final List<FieldDescriptor> fields = createFieldList(serviceElement);
                 final String localName = determineLocalName(serviceElement);
-                ImplementedDescriptor annotationDescriptor = new ImplementedDescriptor(packageName, implName, localName, fields);
+                final boolean isPublic = serviceElement.getModifiers().contains(Modifier.PUBLIC);
+                ImplementedDescriptor annotationDescriptor = new ImplementedDescriptor(isPublic, packageName, implName, localName, fields);
                 createImplSourceFile(annotationDescriptor, serviceElement, packageName + "." + implName);
             }
         }

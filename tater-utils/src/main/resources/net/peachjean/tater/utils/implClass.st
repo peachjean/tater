@@ -5,7 +5,7 @@ import org.apache.commons.lang3.AnnotationUtils;
 import com.google.common.base.Preconditions;
 
 @SuppressWarnings({"UnusedDeclaration", "ClassExplicitlyAnnotation"})
-public class $annotationType.implName$ implements $annotationType.localName$ {
+$if(annotationType.public)$public $endif$class $annotationType.implName$ implements $annotationType.localName$ {
 
 $annotationType.fields:{field|
     private final $field.type$ $field.name$;

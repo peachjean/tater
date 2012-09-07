@@ -14,13 +14,15 @@ class ImplementedDescriptor {
     public static final String TEMPLATE_PATH =
             ImplementedDescriptor.class.getPackage().getName().replaceAll("\\.", "/") + "/";
 
+    private final boolean isPublic;
     private final String packageName;
     private final String implName;
     private final String localName;
     private final List<FieldDescriptor> fields;
     private final FieldDescriptor valueField;
 
-    public ImplementedDescriptor(String packageName, String implName, final String localName, List<FieldDescriptor> fields) {
+    public ImplementedDescriptor(final boolean isPublic, String packageName, String implName, final String localName, List<FieldDescriptor> fields) {
+        this.isPublic = isPublic;
         this.packageName = packageName;
         this.implName = implName;
         this.localName = localName;
@@ -59,6 +61,10 @@ class ImplementedDescriptor {
         {
             Closeables.close(writer, false);
         }
+    }
+
+    public boolean isPublic() {
+        return isPublic;
     }
 
     public String getPackageName() {

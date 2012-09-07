@@ -104,4 +104,9 @@ public class TypeSourceFormatter extends TypeKindVisitor6<String,Utils> {
         }
         return sb.toString();
     }
+
+    @Override
+    protected String defaultAction(final TypeMirror e, final Utils utils) {
+        return super.defaultAction(e, utils);
+    }
 }

@@ -14,6 +14,7 @@ import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 
 public class ImplementedProcessorTest {
     @Rule
@@ -239,7 +240,7 @@ public class ImplementedProcessorTest {
     }
 
     @Test
-    public void testAlternateName() throws IOException {
+    public void testAlternateName() throws Exception {
         JavaFileObject[] sourceFiles = {
       				JavaSourceFromText.builder("com.example.MyAnnotationHolder")
       						.line("package com.example;")
@@ -274,6 +275,48 @@ public class ImplementedProcessorTest {
       		results.assertNoOutput();
       		results.assertNumberOfDiagnostics(Diagnostic.Kind.ERROR, 0);
       		results.assertNumberOfDiagnostics(Diagnostic.Kind.WARNING, 0);
+        results.runAssertion("com.example.MyAnnotationAsserter");
+    }
+
+    @Test
+    public void testAccessLevel() throws Exception {
+        JavaFileObject[] sourceFiles = {
+      				JavaSourceFromText.builder("com.example.MyAnnotationHolder")
+      						.line("package com.example;")
+      						.line("import net.peachjean.tater.utils.*;")
+      						.line("import java.lang.annotation.*;")
+                            .line("@Implemented")
+                            .line("@interface MyAnnotation {")
+      						.line("    String value();")
+                            .line("}")
+      						.build(),
+        JavaSourceFromText.builder("com.example.MyAnnotationAsserter")
+                            .line("package com.example;")
+                            .line("import java.lang.annotation.*;")
+                            .line("import java.lang.reflect.*;")
+                            .line("import net.peachjean.tater.test.*;")
+                            .line("import net.peachjean.commons.test.junit.AssertionHandler;")
+                            .line("public class MyAnnotationAsserter implements CompilerAsserter {")
+                            .line("  public void doAssertions(AssertionHandler assertionHandler) {")
+                            .line("    int mod = MyAnnotationImpl.class.getModifiers();")
+                            .line("    assertionHandler.assertFalse(\"private\", Modifier.isPrivate(mod));")
+                            .line("    assertionHandler.assertFalse(\"public\", Modifier.isPublic(mod));")
+                            .line("    assertionHandler.assertFalse(\"protected\", Modifier.isProtected(mod));")
+                            .line("  }")
+                            .line("}")
+                            .build(),
+        };
+
+        CompilerResults results = new CompilerHarness(tmpDir.getDir(), accumulator, sourceFiles)
+      				.addProcessor(new ImplementedProcessor()).invoke();
+
+      		for (Diagnostic<? extends JavaFileObject> diagnostic : results.getDiagnostics()) {
+      			System.out.println(diagnostic);
+      		}
+      		results.assertNoOutput();
+      		results.assertNumberOfDiagnostics(Diagnostic.Kind.ERROR, 0);
+      		results.assertNumberOfDiagnostics(Diagnostic.Kind.WARNING, 0);
+        results.runAssertion("com.example.MyAnnotationAsserter");
     }
 
 }
