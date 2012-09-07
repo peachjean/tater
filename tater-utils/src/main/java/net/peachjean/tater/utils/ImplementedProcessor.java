@@ -38,14 +38,21 @@ public class ImplementedProcessor extends AbstractProcessor {
                 PackageElement packageElement = getPackage(serviceElement);
                 final String packageName =
                         packageElement == null ? "" : packageElement.getQualifiedName().toString();
-                final String simpleName = serviceElement.getSimpleName().toString();
+                Implemented implemented = serviceElement.getAnnotation(Implemented.class);
+                final String implName = "".equals(implemented.value()) ? serviceElement.getSimpleName().toString() + "Impl" :
+                        implemented.value();
                 final List<FieldDescriptor> fields = createFieldList(serviceElement);
-                ImplementedDescriptor annotationDescriptor = new ImplementedDescriptor(packageName, simpleName, fields);
-                createImplSourceFile(annotationDescriptor, serviceElement);
+                final String localName = determineLocalName(serviceElement);
+                ImplementedDescriptor annotationDescriptor = new ImplementedDescriptor(packageName, implName, localName, fields);
+                createImplSourceFile(annotationDescriptor, serviceElement, packageName + "." + implName);
             }
         }
 
         return true;
+    }
+
+    private String determineLocalName(final TypeElement serviceElement) {
+        return serviceElement.getQualifiedName().toString();
     }
 
     private List<FieldDescriptor> createFieldList(TypeElement serviceElement) {
@@ -57,12 +64,11 @@ public class ImplementedProcessor extends AbstractProcessor {
         return fieldListBuilder.build();
     }
 
-    private void createImplSourceFile(final ImplementedDescriptor annotationDescriptor, final TypeElement annotationElement)
+    private void createImplSourceFile(final ImplementedDescriptor annotationDescriptor, final TypeElement annotationElement, final String implName)
     {
-        String className = processingEnv.getElementUtils().getBinaryName(annotationElement) + "Impl";
         try
         {
-            final JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(className, annotationElement);
+            final JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(implName, annotationElement);
             annotationDescriptor.generateSource(new OutputSupplier<Writer>()
             {
                 @Override
@@ -74,7 +80,7 @@ public class ImplementedProcessor extends AbstractProcessor {
         }
         catch (IOException e)
         {
-            processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Could not create source file: " + className + "[" + e.getMessage() + "]");
+            processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Could not create source file: " + implName + "[" + e.getMessage() + "]");
         }
     }
 

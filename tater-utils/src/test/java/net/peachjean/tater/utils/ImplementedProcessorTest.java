@@ -210,4 +210,70 @@ public class ImplementedProcessorTest {
 
 		results.runAssertion("com.example.MyAnnotationAsserter");
 	}
+
+    @Test
+    public void testInnerAnnotation() throws IOException {
+        JavaFileObject[] sourceFiles = {
+      				JavaSourceFromText.builder("com.example.MyAnnotationHolder")
+      						.line("package com.example;")
+      						.line("import net.peachjean.tater.utils.*;")
+      						.line("import java.lang.annotation.*;")
+                            .line("public class MyAnnotationHolder {")
+      						.line("  @Implemented ")
+      						.line("  public static @interface MyAnnotation {")
+      						.line("    String value();")
+      						.line("  }")
+                            .line("}")
+      						.build()
+        };
+
+        CompilerResults results = new CompilerHarness(tmpDir.getDir(), accumulator, sourceFiles)
+      				.addProcessor(new ImplementedProcessor()).invoke();
+
+      		for (Diagnostic<? extends JavaFileObject> diagnostic : results.getDiagnostics()) {
+      			System.out.println(diagnostic);
+      		}
+      		results.assertNoOutput();
+      		results.assertNumberOfDiagnostics(Diagnostic.Kind.ERROR, 0);
+      		results.assertNumberOfDiagnostics(Diagnostic.Kind.WARNING, 0);
+    }
+
+    @Test
+    public void testAlternateName() throws IOException {
+        JavaFileObject[] sourceFiles = {
+      				JavaSourceFromText.builder("com.example.MyAnnotationHolder")
+      						.line("package com.example;")
+      						.line("import net.peachjean.tater.utils.*;")
+      						.line("import java.lang.annotation.*;")
+                            .line("public class MyAnnotationHolder {")
+      						.line("  @Implemented(\"RandomNamedImpl\")")
+      						.line("  public static @interface MyAnnotation {")
+      						.line("    String value();")
+      						.line("  }")
+                            .line("}")
+      						.build(),
+        JavaSourceFromText.builder("com.example.MyAnnotationAsserter")
+                            .line("package com.example;")
+                            .line("import java.lang.annotation.*;")
+                            .line("import net.peachjean.tater.test.*;")
+                            .line("import net.peachjean.commons.test.junit.AssertionHandler;")
+                            .line("public class MyAnnotationAsserter implements CompilerAsserter {")
+                            .line("  public void doAssertions(AssertionHandler assertionHandler) {")
+                            .line("    MyAnnotationHolder.MyAnnotation a = RandomNamedImpl.value(\"someValue\").build();")
+                            .line("  }")
+                            .line("}")
+                            .build(),
+        };
+
+        CompilerResults results = new CompilerHarness(tmpDir.getDir(), accumulator, sourceFiles)
+      				.addProcessor(new ImplementedProcessor()).invoke();
+
+      		for (Diagnostic<? extends JavaFileObject> diagnostic : results.getDiagnostics()) {
+      			System.out.println(diagnostic);
+      		}
+      		results.assertNoOutput();
+      		results.assertNumberOfDiagnostics(Diagnostic.Kind.ERROR, 0);
+      		results.assertNumberOfDiagnostics(Diagnostic.Kind.WARNING, 0);
+    }
+
 }

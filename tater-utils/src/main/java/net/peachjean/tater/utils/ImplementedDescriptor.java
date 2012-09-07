@@ -15,13 +15,15 @@ class ImplementedDescriptor {
             ImplementedDescriptor.class.getPackage().getName().replaceAll("\\.", "/") + "/";
 
     private final String packageName;
-    private final String simpleName;
+    private final String implName;
+    private final String localName;
     private final List<FieldDescriptor> fields;
     private final FieldDescriptor valueField;
 
-    public ImplementedDescriptor(String packageName, String simpleName, List<FieldDescriptor> fields) {
+    public ImplementedDescriptor(String packageName, String implName, final String localName, List<FieldDescriptor> fields) {
         this.packageName = packageName;
-        this.simpleName = simpleName;
+        this.implName = implName;
+        this.localName = localName;
         this.fields = fields;
         this.valueField = findValueField(fields);
     }
@@ -63,8 +65,12 @@ class ImplementedDescriptor {
         return packageName;
     }
 
-    public String getSimpleName() {
-        return simpleName;
+    public String getImplName() {
+        return implName;
+    }
+
+    public String getLocalName() {
+        return localName;
     }
 
     public List<FieldDescriptor> getFields() {

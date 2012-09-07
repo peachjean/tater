@@ -5,7 +5,7 @@ import org.apache.commons.lang3.AnnotationUtils;
 import com.google.common.base.Preconditions;
 
 @SuppressWarnings({"UnusedDeclaration", "ClassExplicitlyAnnotation"})
-public class $annotationType.simpleName$Impl implements $annotationType.simpleName$ {
+public class $annotationType.implName$ implements $annotationType.localName$ {
 
 $annotationType.fields:{field|
     private final $field.type$ $field.name$;
@@ -19,14 +19,14 @@ $annotationType.fields:{field|
     }
 }$
 
-    private $annotationType.simpleName$Impl($annotationType.fields:{field|final $field.type$ $field.name$}; separator=", "$) {
+    private $annotationType.implName$($annotationType.fields:{field|final $field.type$ $field.name$}; separator=", "$) {
       $annotationType.fields:{field|
         this.$field.name$ = Preconditions.checkNotNull($field.name$, "$field.name$ has no default value.  It must be specified.");
       }$
     }
 
-    public Class<$annotationType.simpleName$> annotationType() {
-      return $annotationType.simpleName$.class;
+    public Class<$annotationType.localName$> annotationType() {
+      return $annotationType.localName$.class;
     }
 
     public int hashCode() {
@@ -35,8 +35,8 @@ $annotationType.fields:{field|
 
     @SuppressWarnings("SimplifiableConditionalExpression")
     public boolean equals(Object other) {
-      return other instanceof $annotationType.simpleName$
-         ? AnnotationUtils.equals(this, ($annotationType.simpleName$) other)
+      return other instanceof $annotationType.localName$
+         ? AnnotationUtils.equals(this, ($annotationType.localName$) other)
          : false;
     }
 
@@ -44,12 +44,12 @@ $annotationType.fields:{field|
       return AnnotationUtils.toString(this);
     }
 
-    public static $annotationType.simpleName$ build() {
+    public static $annotationType.localName$ build() {
       return new Builder().build();
     }
 
 $if(annotationType.valueField)$
-    public static $annotationType.simpleName$ build(final $annotationType.valueField.parameterType$ v) {
+    public static $annotationType.localName$ build(final $annotationType.valueField.parameterType$ v) {
       return new Builder().build(v);
     }
 $endif$
@@ -62,12 +62,12 @@ $annotationType.fields:{field|
 }$
 
     public static class Builder {
-      $annotationType.simpleName$ build() {
-        return new $annotationType.simpleName$Impl($annotationType.fields:{field|$field.name$}; separator=", "$);
+      $annotationType.localName$ build() {
+        return new $annotationType.implName$($annotationType.fields:{field|$field.name$}; separator=", "$);
       }
 
  $if(annotationType.valueField)$
-      public $annotationType.simpleName$ build(final $annotationType.valueField.parameterType$ v) {
+      public $annotationType.localName$ build(final $annotationType.valueField.parameterType$ v) {
         this.$annotationType.valueField.name$ = v;
         return this.build();
       }
