@@ -31,7 +31,12 @@ $annotationType.fields:{field|
     }
 
     public int hashCode() {
-      return AnnotationUtils.hashCode(this);
+      int result = 0;
+      $annotationType.fields:{field|
+        result += ("$field.name$".hashCode() * 127) ^ ImplementationHelper.hashCode($field.name$);
+      }$
+
+      return result;
     }
 
     @SuppressWarnings("SimplifiableConditionalExpression")

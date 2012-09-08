@@ -156,7 +156,33 @@ public class MyAnnotationImpl implements com.example.testa.MyAnnotation {
     }
 
     public int hashCode() {
-      return AnnotationUtils.hashCode(this);
+      int result = 0;
+              result += ("field1".hashCode() * 127) ^ ImplementationHelper.hashCode(field1);
+                    result += ("field2".hashCode() * 127) ^ ImplementationHelper.hashCode(field2);
+                    result += ("field3".hashCode() * 127) ^ ImplementationHelper.hashCode(field3);
+                    result += ("field4".hashCode() * 127) ^ ImplementationHelper.hashCode(field4);
+                    result += ("field5".hashCode() * 127) ^ ImplementationHelper.hashCode(field5);
+                    result += ("field6".hashCode() * 127) ^ ImplementationHelper.hashCode(field6);
+                    result += ("field7".hashCode() * 127) ^ ImplementationHelper.hashCode(field7);
+                    result += ("field8".hashCode() * 127) ^ ImplementationHelper.hashCode(field8);
+                    result += ("field9".hashCode() * 127) ^ ImplementationHelper.hashCode(field9);
+                    result += ("field10".hashCode() * 127) ^ ImplementationHelper.hashCode(field10);
+                    result += ("field11".hashCode() * 127) ^ ImplementationHelper.hashCode(field11);
+                    result += ("noDefault".hashCode() * 127) ^ ImplementationHelper.hashCode(noDefault);
+                    result += ("array1".hashCode() * 127) ^ ImplementationHelper.hashCode(array1);
+                    result += ("array2".hashCode() * 127) ^ ImplementationHelper.hashCode(array2);
+                    result += ("array3".hashCode() * 127) ^ ImplementationHelper.hashCode(array3);
+                    result += ("array4".hashCode() * 127) ^ ImplementationHelper.hashCode(array4);
+                    result += ("array5".hashCode() * 127) ^ ImplementationHelper.hashCode(array5);
+                    result += ("array6".hashCode() * 127) ^ ImplementationHelper.hashCode(array6);
+                    result += ("array7".hashCode() * 127) ^ ImplementationHelper.hashCode(array7);
+                    result += ("array8".hashCode() * 127) ^ ImplementationHelper.hashCode(array8);
+                    result += ("array9".hashCode() * 127) ^ ImplementationHelper.hashCode(array9);
+                    result += ("array10".hashCode() * 127) ^ ImplementationHelper.hashCode(array10);
+                    result += ("array11".hashCode() * 127) ^ ImplementationHelper.hashCode(array11);
+            
+
+      return result;
     }
 
     @SuppressWarnings("SimplifiableConditionalExpression")

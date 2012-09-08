@@ -124,4 +124,125 @@ public class ImplementationHelper {
     {
         return Arrays.equals(one, two);
     }
+
+    public static int hashCode(Class<?> member)
+    {
+        return member.hashCode();
+    }
+
+    public static <E extends Enum<E>> int hashCode(E member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(String member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(Annotation member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(Boolean member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(Byte member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(Character member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(Double member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(Float member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(Integer member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(Long member)
+    {
+        return member.hashCode();
+    }
+
+    public static int hashCode(Short member)
+    {
+        return member.hashCode();
+    }
+
+
+    public static int hashCode(Class<?>[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static <E extends Enum<E>> int hashCode(E[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(String[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(Annotation[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(boolean[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(byte[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(char[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(double[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(float[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(int[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(long[] member)
+    {
+        return Arrays.hashCode(member);
+    }
+
+    public static int hashCode(short[] member)
+    {
+        return Arrays.hashCode(member);
+    }
 }
