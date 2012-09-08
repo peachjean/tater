@@ -3,6 +3,7 @@ $if(annotationType.packageName)$package $annotationType.packageName$;$endif$
 
 import org.apache.commons.lang3.AnnotationUtils;
 import com.google.common.base.Preconditions;
+import net.peachjean.tater.utils.*;
 
 @SuppressWarnings({"UnusedDeclaration", "ClassExplicitlyAnnotation"})
 $if(annotationType.public)$public $endif$class $annotationType.implName$ implements $annotationType.localName$ {
@@ -36,8 +37,22 @@ $annotationType.fields:{field|
     @SuppressWarnings("SimplifiableConditionalExpression")
     public boolean equals(Object other) {
       return other instanceof $annotationType.localName$
-         ? AnnotationUtils.equals(this, ($annotationType.localName$) other)
+         ? doEquals(($annotationType.localName$) other)
          : false;
+    }
+
+    private boolean doEquals($annotationType.localName$ other) {
+            if (this == other) {
+                return true;
+            }
+
+            $annotationType.fields:{field|
+              if(!ImplementationHelper.isEquals(this.$field.name$(), other.$field.name$())) {
+                return false;
+              }
+            }$
+            return true;
+
     }
 
     public String toString() {

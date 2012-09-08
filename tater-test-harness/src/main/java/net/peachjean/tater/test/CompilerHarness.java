@@ -15,6 +15,7 @@ import javax.tools.StandardJavaFileManager;
 import javax.tools.StandardLocation;
 import javax.tools.ToolProvider;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import net.peachjean.commons.test.junit.AssertionHandler;
 
@@ -77,7 +78,7 @@ public class CompilerHarness
 
 		JavaCompiler.CompilationTask compilerTask =
 				compiler.getTask(compilerOutput, fileManager, diagnostics,
-                        Collections.singleton("-Xlint:unchecked"), null, compilationUnits);
+                        ImmutableList.of("-Xlint:unchecked", "-g"), null, compilationUnits);
 		compilerTask.setProcessors(processors);
 
 		boolean success = compilerTask.call();
