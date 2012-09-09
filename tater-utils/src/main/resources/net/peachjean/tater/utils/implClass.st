@@ -1,11 +1,12 @@
 $! http://www.antlr.org/wiki/display/ST/StringTemplate+cheat+sheet !$
 $if(annotationType.packageName)$package $annotationType.packageName$;$endif$
 
-import org.apache.commons.lang3.AnnotationUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.google.common.base.Preconditions;
 import net.peachjean.tater.utils.*;
 
 @SuppressWarnings({"UnusedDeclaration", "ClassExplicitlyAnnotation"})
+@javax.annotation.Generated(value="$annotationType.class$", date="$annotationType.date$")
 $if(annotationType.public)$public $endif$class $annotationType.implName$ implements $annotationType.localName$ {
 
 $annotationType.fields:{field|
@@ -61,7 +62,11 @@ $annotationType.fields:{field|
     }
 
     public String toString() {
-      return AnnotationUtils.toString(this);
+      ToStringBuilder builder = ImplementationHelper.toStringBuilder(this);
+      $annotationType.fields:{field|
+        builder.append("$field.name$", $field.name$());
+      }$
+      return builder.build();
     }
 
     public static $annotationType.localName$ build() {

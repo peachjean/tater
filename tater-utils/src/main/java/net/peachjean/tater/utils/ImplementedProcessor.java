@@ -32,6 +32,7 @@ public class ImplementedProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, "Processing @Implemented...");
         for(TypeElement annotation: annotations) {
             for(Element element: roundEnv.getElementsAnnotatedWith(annotation)) {
                 TypeElement serviceElement = (TypeElement) element;
@@ -78,6 +79,7 @@ public class ImplementedProcessor extends AbstractProcessor {
                     return sourceFile.openWriter();
                 }
             });
+            processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, "Generated source " + implName);
         }
         catch (IOException e)
         {

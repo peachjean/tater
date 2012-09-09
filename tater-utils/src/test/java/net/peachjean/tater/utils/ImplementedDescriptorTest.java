@@ -12,6 +12,7 @@ import pl.ncdc.differentia.DifferentiaAssert;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 
@@ -51,7 +52,7 @@ public class ImplementedDescriptorTest {
                         new FieldDescriptor("array9", arrayName(char.class), "new char[] {'c'}"),
                         new FieldDescriptor("array10", arrayName(short.class), "new short[] {3}"),
                         new FieldDescriptor("array11", arrayName(boolean.class), "new boolean[] {true}")
-        ));
+        ), new Date(10));
 
         final StringWriter output = new StringWriter();
         underTest.generateSource(new OutputSupplier<Writer>() {

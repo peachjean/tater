@@ -1,10 +1,46 @@
 package net.peachjean.tater.utils;
 
+import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
 
 @SuppressWarnings("UnusedDeclaration")
 public class ImplementationHelper {
+
+    private static final ToStringStyle TO_STRING_STYLE = new ToStringStyle() {
+        /** Serialization version */
+        private static final long serialVersionUID = 1L;
+
+        {
+            setDefaultFullDetail(true);
+            setArrayContentDetail(true);
+            setUseClassName(true);
+            setUseShortClassName(true);
+            setUseIdentityHashCode(false);
+            setContentStart("(");
+            setContentEnd(")");
+            setFieldSeparator(", ");
+            setArrayStart("[");
+            setArrayEnd("]");
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        protected String getShortClassName(java.lang.Class<?> cls) {
+            return "@" + cls.getName();
+        }
+    };
+
+    public static ToStringBuilder toStringBuilder(Annotation a)
+    {
+        return new ToStringBuilder(a, TO_STRING_STYLE);
+    }
+
     public static boolean isEquals(Class<?> one, Class<?> two)
     {
         return one.equals(two);

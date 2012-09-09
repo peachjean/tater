@@ -7,12 +7,14 @@ import net.peachjean.tater.test.CompilerHarness;
 import net.peachjean.tater.test.CompilerResults;
 import net.peachjean.tater.test.JavaSourceFromText;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 
@@ -318,5 +320,4 @@ public class ImplementedProcessorTest {
       		results.assertNumberOfDiagnostics(Diagnostic.Kind.WARNING, 0);
         results.runAssertion("com.example.MyAnnotationAsserter");
     }
-
 }

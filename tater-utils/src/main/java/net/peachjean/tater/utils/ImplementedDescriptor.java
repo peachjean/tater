@@ -5,9 +5,11 @@ import com.google.common.io.OutputSupplier;
 import org.antlr.stringtemplate.AutoIndentWriter;
 import org.antlr.stringtemplate.StringTemplate;
 import org.antlr.stringtemplate.StringTemplateGroup;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Date;
 import java.util.List;
 
 class ImplementedDescriptor {
@@ -20,14 +22,20 @@ class ImplementedDescriptor {
     private final String localName;
     private final List<FieldDescriptor> fields;
     private final FieldDescriptor valueField;
+    private final String date;
 
     public ImplementedDescriptor(final boolean isPublic, String packageName, String implName, final String localName, List<FieldDescriptor> fields) {
+        this(isPublic, packageName, implName, localName, fields, new Date());
+    }
+
+    public ImplementedDescriptor(final boolean isPublic, String packageName, String implName, final String localName, List<FieldDescriptor> fields, final Date generatedTime) {
         this.isPublic = isPublic;
         this.packageName = packageName;
         this.implName = implName;
         this.localName = localName;
         this.fields = fields;
         this.valueField = findValueField(fields);
+        this.date = DateFormatUtils.ISO_DATETIME_TIME_ZONE_FORMAT.format(generatedTime);
     }
 
     private FieldDescriptor findValueField(List<FieldDescriptor> fields) {
@@ -85,5 +93,9 @@ class ImplementedDescriptor {
 
     public FieldDescriptor getValueField() {
         return valueField;
+    }
+
+    public String getDate() {
+        return date;
     }
 }

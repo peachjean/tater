@@ -1,10 +1,11 @@
 package com.example.testa;
 
-import org.apache.commons.lang3.AnnotationUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.google.common.base.Preconditions;
 import net.peachjean.tater.utils.*;
 
 @SuppressWarnings({"UnusedDeclaration", "ClassExplicitlyAnnotation"})
+@javax.annotation.Generated(value="class net.peachjean.tater.utils.ImplementedDescriptor", date="1969-12-31T18:00:00-06:00")
 public class MyAnnotationImpl implements com.example.testa.MyAnnotation {
 
     private final java.lang.String field1;
@@ -272,7 +273,32 @@ public class MyAnnotationImpl implements com.example.testa.MyAnnotation {
     }
 
     public String toString() {
-      return AnnotationUtils.toString(this);
+      ToStringBuilder builder = ImplementationHelper.toStringBuilder(this);
+              builder.append("field1", field1());
+                    builder.append("field2", field2());
+                    builder.append("field3", field3());
+                    builder.append("field4", field4());
+                    builder.append("field5", field5());
+                    builder.append("field6", field6());
+                    builder.append("field7", field7());
+                    builder.append("field8", field8());
+                    builder.append("field9", field9());
+                    builder.append("field10", field10());
+                    builder.append("field11", field11());
+                    builder.append("noDefault", noDefault());
+                    builder.append("array1", array1());
+                    builder.append("array2", array2());
+                    builder.append("array3", array3());
+                    builder.append("array4", array4());
+                    builder.append("array5", array5());
+                    builder.append("array6", array6());
+                    builder.append("array7", array7());
+                    builder.append("array8", array8());
+                    builder.append("array9", array9());
+                    builder.append("array10", array10());
+                    builder.append("array11", array11());
+            
+      return builder.build();
     }
 
     public static com.example.testa.MyAnnotation build() {
