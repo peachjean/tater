@@ -19,7 +19,8 @@
     <url>https://bitbucket.org/peachjean/tater</url>
     <scm>
         <url>https://bitbucket.org/peachjean/tater</url>
-        <connection>ssh://hg@bitbucket.org/peachjean/tater</connection>
+        <connection>scm:hg:ssh://hg@bitbucket.org/peachjean/tater</connection>
+        <developerConnection>scm:hg:ssh://hg@bitbucket.org/peachjean/tater</developerConnection>
     </scm>
     <licenses>
         <license>
