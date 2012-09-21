@@ -9,7 +9,7 @@
 
     <groupId>net.peachjean.tater</groupId>
     <artifactId>tater-root</artifactId>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Tater</name>
@@ -52,17 +52,17 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>tater-test-harness</artifactId>
-                <version>0.1</version>
+                <version>0.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>tater-maven-plugin</artifactId>
-                <version>0.1</version>
+                <version>0.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>tater-utils</artifactId>
-                <version>0.1</version>
+                <version>0.2-SNAPSHOT</version>
             </dependency>
 
 	        <!-- BASIC DEPENDENCY LIBRARIES-->
@@ -125,7 +125,7 @@
 	            <plugin>
 		            <groupId>${project.groupId}</groupId>
 		            <artifactId>tater-maven-plugin</artifactId>
-		            <version>0.1</version>
+		            <version>0.2-SNAPSHOT</version>
 	            </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
