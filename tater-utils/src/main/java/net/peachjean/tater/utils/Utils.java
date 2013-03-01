@@ -21,7 +21,7 @@ public class Utils {
         return types;
     }
 
-    static Utils from(ProcessingEnvironment processingEnvironment) {
+    public static Utils from(ProcessingEnvironment processingEnvironment) {
         return new Utils(processingEnvironment.getElementUtils(), processingEnvironment.getTypeUtils());
     }
 }
