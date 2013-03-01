@@ -12,7 +12,9 @@ import pl.ncdc.differentia.DifferentiaAssert;
 
 import java.io.*;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,6 +29,8 @@ public class ImplementedDescriptorTest {
         AnnotationFieldDefaultValueFormatter defaultValueFormatter = AnnotationFieldDefaultValueFormatter.INSTANCE;
         AnnotationFieldTypeFormatter typeFormatter = AnnotationFieldTypeFormatter.INSTANCE;
 
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("CST"));
+        calendar.setTimeInMillis(10);
         ImplementedDescriptor underTest = new ImplementedDescriptor(true, "com.example.testa", "MyAnnotationImpl",
                 "com.example.testa.MyAnnotation", ImmutableList.of(
                         new FieldDescriptor("field1", String.class.getName(), "\"value1\""),
@@ -52,7 +56,7 @@ public class ImplementedDescriptorTest {
                         new FieldDescriptor("array9", arrayName(char.class), "new char[] {'c'}"),
                         new FieldDescriptor("array10", arrayName(short.class), "new short[] {3}"),
                         new FieldDescriptor("array11", arrayName(boolean.class), "new boolean[] {true}")
-        ), new Date(10));
+        ), calendar);
 
         final StringWriter output = new StringWriter();
         underTest.generateSource(new OutputSupplier<Writer>() {

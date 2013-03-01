@@ -9,8 +9,10 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 class ImplementedDescriptor {
     public static final String TEMPLATE_PATH =
@@ -25,17 +27,21 @@ class ImplementedDescriptor {
     private final String date;
 
     public ImplementedDescriptor(final boolean isPublic, String packageName, String implName, final String localName, List<FieldDescriptor> fields) {
-        this(isPublic, packageName, implName, localName, fields, new Date());
+        this(isPublic, packageName, implName, localName, fields, Calendar.getInstance());
     }
 
-    public ImplementedDescriptor(final boolean isPublic, String packageName, String implName, final String localName, List<FieldDescriptor> fields, final Date generatedTime) {
+    public ImplementedDescriptor(final boolean isPublic, String packageName, String implName, final String localName, List<FieldDescriptor> fields, final Calendar generatedTime) {
         this.isPublic = isPublic;
         this.packageName = packageName;
         this.implName = implName;
         this.localName = localName;
         this.fields = fields;
         this.valueField = findValueField(fields);
-        this.date = DateFormatUtils.ISO_DATETIME_TIME_ZONE_FORMAT.format(generatedTime);
+        final TimeZone timeZone = generatedTime.getTimeZone();
+        this.date = DateFormatUtils.format(
+                generatedTime,
+                DateFormatUtils.ISO_DATETIME_TIME_ZONE_FORMAT.getPattern(),
+                timeZone);
     }
 
     private FieldDescriptor findValueField(List<FieldDescriptor> fields) {
