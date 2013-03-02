@@ -76,6 +76,7 @@ public class ImplementedProcessorTest {
                         .line("}")
                 .build()
         };
+        Thread.currentThread().getContextClassLoader();
         CompilerResults results = new CompilerHarness(tmpDir.getDir(), accumulator, sourceFiles)
                 .addProcessor(new ImplementedProcessor()).invoke();
 

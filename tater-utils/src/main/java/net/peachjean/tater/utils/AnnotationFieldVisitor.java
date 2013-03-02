@@ -1,7 +1,5 @@
 package net.peachjean.tater.utils;
 
-import com.google.common.base.Optional;
-
 import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.type.TypeMirror;

@@ -1,10 +1,9 @@
 package net.peachjean.tater.utils;
 
-import com.google.common.base.Function;
-import com.google.common.base.Joiner;
-import com.google.common.collect.Iterables;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Transformer;
+import org.apache.commons.lang3.StringUtils;
 
-import javax.annotation.Nullable;
 import javax.lang.model.type.*;
 import javax.lang.model.util.TypeKindVisitor6;
 
@@ -59,12 +58,12 @@ public class TypeSourceFormatter extends TypeKindVisitor6<String,Utils> {
 
         final String base = enclosing + "." + t.asElement().getSimpleName();
         if(t.getTypeArguments().size() > 0) {
-            String typeArgs = Joiner.on(",").join(Iterables.transform(t.getTypeArguments(), new Function<TypeMirror, String>() {
+            String typeArgs = StringUtils.join(CollectionUtils.collect(t.getTypeArguments(), new Transformer<TypeMirror, String>() {
                 @Override
-                public String apply(@Nullable TypeMirror input) {
+                public String transform(TypeMirror input) {
                     return input.accept(TypeSourceFormatter.this, o);
                 }
-            }));
+            }), ',');
             return base + "<" + typeArgs + ">";
         }
         return base;

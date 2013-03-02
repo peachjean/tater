@@ -1,25 +1,49 @@
 package net.peachjean.tater.utils;
 
-import com.google.common.collect.ImmutableMap;
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.collections.map.UnmodifiableMap;
 import org.apache.commons.lang3.AnnotationUtils;
 
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
-import java.lang.annotation.IncompleteAnnotationException;
 import java.lang.reflect.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AnnotationInvocationHandler implements InvocationHandler, Serializable {
 
-    public static <A extends Annotation> A implement(Class<A> annotationType, ImmutableMap<String, Object> memberValues) {
+    @SuppressWarnings("UnusedDeclaration") // this method is used by generated classes
+    public static <A extends Annotation> A implement(Class<A> annotationType, UnmodifiableMap<String, Object> memberValues) {
         return (A) Proxy.newProxyInstance(annotationType.getClassLoader(),
                 new Class[]{annotationType},
                 new AnnotationInvocationHandler(annotationType, memberValues));
     }
 
-    private final Class<? extends Annotation> type;
-    private final ImmutableMap<String, Object> memberValues;
+    public static <A extends Annotation> AnnotationBuilder<A> implement(final Class<A> annotationType) {
+        final Map<String, Object> memberValueMap = new HashMap<String, Object>();
+        return new AnnotationBuilder<A>() {
+            @Override
+            public A build() {
+                return AnnotationInvocationHandler.implement(annotationType, (UnmodifiableMap<String,Object>) MapUtils.unmodifiableMap(memberValueMap));
+            }
 
-    private AnnotationInvocationHandler(Class<? extends Annotation> type, ImmutableMap<String, Object> memberValues) {
+            @Override
+            public AnnotationBuilder<A> withMemberValue(String name, Object value) {
+                memberValueMap.put(name, value);
+                return this;
+            }
+        };
+    }
+
+    public static interface AnnotationBuilder<A extends Annotation> {
+        A build();
+        AnnotationBuilder<A> withMemberValue(String name, Object value);
+    }
+
+    private final Class<? extends Annotation> type;
+    private final UnmodifiableMap<String, Object> memberValues;
+
+    private AnnotationInvocationHandler(Class<? extends Annotation> type, UnmodifiableMap<String, Object> memberValues) {
         this.type = type;
         this.memberValues = memberValues;
     }

@@ -1,10 +1,9 @@
 package net.peachjean.tater.utils;
 
-import com.google.common.io.Closeables;
-import com.google.common.io.OutputSupplier;
 import org.antlr.stringtemplate.AutoIndentWriter;
 import org.antlr.stringtemplate.StringTemplate;
 import org.antlr.stringtemplate.StringTemplateGroup;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 import java.io.IOException;
@@ -73,7 +72,7 @@ class ImplementedDescriptor {
         }
         finally
         {
-            Closeables.close(writer, false);
+            IOUtils.closeQuietly(writer);
         }
     }
 

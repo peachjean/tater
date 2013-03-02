@@ -1,7 +1,5 @@
 package net.peachjean.tater.utils;
 
-import com.google.common.base.Optional;
-
 class FieldDescriptor {
     private final String name;
     private final String type;

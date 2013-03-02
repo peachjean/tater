@@ -1,7 +1,8 @@
 package net.peachjean.tater.utils;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.io.OutputSupplier;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.ListUtils;
+import org.apache.commons.collections.Transformer;
 
 import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
@@ -10,6 +11,7 @@ import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -58,12 +60,14 @@ public class ImplementedProcessor extends AbstractProcessor {
     }
 
     private List<FieldDescriptor> createFieldList(TypeElement serviceElement) {
-        ImmutableList.Builder<FieldDescriptor> fieldListBuilder = ImmutableList.builder();
-        for(Element enclosed: serviceElement.getEnclosedElements()) {
-            FieldDescriptor fieldDescriptor = enclosed.accept(AnnotationFieldVisitor.INSTANCE, utils);
-            fieldListBuilder.add(fieldDescriptor);
-        }
-        return fieldListBuilder.build();
+        return ListUtils.unmodifiableList(CollectionUtils.collect(serviceElement.getEnclosedElements(),
+                new Transformer<Element, FieldDescriptor>() {
+                    @Override
+                    public FieldDescriptor transform(Element enclosed) {
+                        FieldDescriptor fieldDescriptor = enclosed.accept(AnnotationFieldVisitor.INSTANCE, utils);
+                        return fieldDescriptor;
+                    }
+                }, new ArrayList<FieldDescriptor>()));
     }
 
     private void createImplSourceFile(final ImplementedDescriptor annotationDescriptor, final TypeElement annotationElement, final String implName)
@@ -74,9 +78,13 @@ public class ImplementedProcessor extends AbstractProcessor {
             annotationDescriptor.generateSource(new OutputSupplier<Writer>()
             {
                 @Override
-                public Writer getOutput() throws IOException
+                public Writer getOutput()
                 {
-                    return sourceFile.openWriter();
+                    try {
+                        return sourceFile.openWriter();
+                    } catch (IOException e) {
+                        throw new RuntimeException("Failed to load source file.", e);
+                    }
                 }
             });
             processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, "Generated source " + implName);

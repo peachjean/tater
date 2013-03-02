@@ -1,10 +1,9 @@
 package net.peachjean.tater.utils;
 
-import com.google.common.base.Function;
-import com.google.common.base.Joiner;
-import com.google.common.collect.Iterables;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.Transformer;
+import org.apache.commons.lang3.StringUtils;
 
-import javax.annotation.Nullable;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.ExecutableElement;
@@ -12,7 +11,6 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.SimpleAnnotationValueVisitor6;
 import java.util.List;
-import java.util.Map;
 
 class AnnotationFieldDefaultValueFormatter extends SimpleAnnotationValueVisitor6<String, AnnotationFieldDefaultValueFormatter.TypeAndUtils> {
 
@@ -89,20 +87,20 @@ class AnnotationFieldDefaultValueFormatter extends SimpleAnnotationValueVisitor6
                 .append(annotationType)
                 .append(">implement(")
                 .append(annotationType)
-                .append(".class, com.google.common.collect.ImmutableMap.<String, Object>builder()");
+                .append(".class)");
         for(ExecutableElement element : a.getElementValues().keySet()) {
-            sb.append(".put(\"")
+            sb.append(".withMemberValue(\"")
                     .append(element.getSimpleName().toString())
                     .append("\", ")
                     .append(a.getElementValues().get(element).accept(this, utils))
                     .append(")");
         }
-        return sb.append(".build())").toString();
+        return sb.append(".build()").toString();
     }
 
     @Override
     public String visitArray(List<? extends AnnotationValue> vals, TypeAndUtils utils) {
-        return String.format("(%s) new %s { %s }", utils.getType(), rawType(utils.getType()), Joiner.on(", ").join(transformValues(vals, utils)));
+        return String.format("(%s) new %s { %s }", utils.getType(), rawType(utils.getType()), StringUtils.join(transformValues(vals, utils), ", "));
     }
 
     private String rawType(String type) {
@@ -117,9 +115,9 @@ class AnnotationFieldDefaultValueFormatter extends SimpleAnnotationValueVisitor6
     }
 
     private Iterable<String> transformValues(List<? extends AnnotationValue> vals, final TypeAndUtils utils) {
-        return Iterables.transform(vals, new Function<AnnotationValue, String>() {
+        return CollectionUtils.collect(vals, new Transformer<AnnotationValue, String>() {
             @Override
-            public String apply(@Nullable AnnotationValue input) {
+            public String transform(AnnotationValue input) {
                 return input.accept(AnnotationFieldDefaultValueFormatter.this, utils);
             }
         });
