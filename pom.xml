@@ -151,6 +151,11 @@
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>clirr-maven-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -164,7 +169,7 @@
             <snapshots>
                 <enabled>true</enabled>
                 <checksumPolicy>fail</checksumPolicy>
-                <updatePolicy>interval:2h</updatePolicy>
+                <updatePolicy>interval:120</updatePolicy>
             </snapshots>
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
