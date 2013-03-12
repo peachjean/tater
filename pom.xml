@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-   		<groupId>org.sonatype.oss</groupId>
-   		<artifactId>oss-parent</artifactId>
-   		<version>7</version>
-   	</parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
     <groupId>net.peachjean.tater</groupId>
     <artifactId>tater-root</artifactId>
@@ -47,7 +48,7 @@
     <dependencyManagement>
         <dependencies>
 
-	        <!-- INTERNAL PROJECT DEPENDENCIES -->
+            <!-- INTERNAL PROJECT DEPENDENCIES -->
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -65,7 +66,7 @@
                 <version>0.2-SNAPSHOT</version>
             </dependency>
 
-	        <!-- BASIC DEPENDENCY LIBRARIES-->
+            <!-- BASIC DEPENDENCY LIBRARIES-->
 
             <dependency>
                 <groupId>org.antlr</groupId>
@@ -96,18 +97,18 @@
 
             <!-- MAVEN PLUGIN DEPENDENCIES -->
 
-	        <dependency>
-	            <groupId>org.apache.maven</groupId>
-	            <artifactId>maven-plugin-api</artifactId>
-	            <version>2.2.1</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>org.apache.maven</groupId>
-	            <artifactId>maven-archiver</artifactId>
-	            <version>2.5</version>
-	        </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-plugin-api</artifactId>
+                <version>2.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-archiver</artifactId>
+                <version>2.5</version>
+            </dependency>
 
-	        <!-- TEST DEPENDENCIES -->
+            <!-- TEST DEPENDENCIES -->
 
             <dependency>
                 <groupId>net.peachjean.commons</groupId>
@@ -127,11 +128,11 @@
     <build>
         <pluginManagement>
             <plugins>
-	            <plugin>
-		            <groupId>${project.groupId}</groupId>
-		            <artifactId>tater-maven-plugin</artifactId>
-		            <version>0.2-SNAPSHOT</version>
-	            </plugin>
+                <plugin>
+                    <groupId>${project.groupId}</groupId>
+                    <artifactId>tater-maven-plugin</artifactId>
+                    <version>0.2-SNAPSHOT</version>
+                </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>2.5.1</version>
@@ -144,7 +145,7 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>2.2.1</version>
                     <configuration>
-			<localCheckout>true</localCheckout>
+                        <localCheckout>true</localCheckout>
                         <pushChanges>false</pushChanges>
                         <tagNameFormat>@{project.version}</tagNameFormat>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
@@ -154,18 +155,22 @@
         </pluginManagement>
     </build>
 
-	<repositories>
-		<repository>
-			<id>oss-snapshots</id>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<checksumPolicy>fail</checksumPolicy>
-				<updatePolicy>interval:2h</updatePolicy>
-			</snapshots>
-			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>oss-snapshots</id>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <checksumPolicy>fail</checksumPolicy>
+                <updatePolicy>interval:2h</updatePolicy>
+            </snapshots>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>apache-snapshots</id>
+            <url>https://repository.apache.org/content/groups/snapshots</url>
+        </repository>
+    </repositories>
 </project>
