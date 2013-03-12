@@ -51,17 +51,12 @@
             <!-- INTERNAL PROJECT DEPENDENCIES -->
 
             <dependency>
-                <groupId>${project.groupId}</groupId>
+                <groupId>net.peachjean.tater</groupId>
                 <artifactId>tater-test-harness</artifactId>
                 <version>0.2-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>tater-maven-plugin</artifactId>
-                <version>0.2-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
+                <groupId>net.peachjean.tater</groupId>
                 <artifactId>tater-utils</artifactId>
                 <version>0.2-SNAPSHOT</version>
             </dependency>
@@ -129,7 +124,7 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>${project.groupId}</groupId>
+                    <groupId>net.peachjean.tater</groupId>
                     <artifactId>tater-maven-plugin</artifactId>
                     <version>0.2-SNAPSHOT</version>
                 </plugin>

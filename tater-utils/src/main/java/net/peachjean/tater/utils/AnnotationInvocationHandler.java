@@ -13,10 +13,13 @@ import java.util.Map;
 public class AnnotationInvocationHandler implements InvocationHandler, Serializable {
 
     @SuppressWarnings("UnusedDeclaration") // this method is used by generated classes
-    public static <A extends Annotation> A implement(Class<A> annotationType, UnmodifiableMap<String, Object> memberValues) {
+    public static <A extends Annotation> A implement(Class<A> annotationType, Map<String, Object> memberValues) {
+        UnmodifiableMap<String, Object> unmodifiableMap = (UnmodifiableMap<String, Object>) (memberValues instanceof UnmodifiableMap
+                        ? memberValues
+                        : MapUtils.unmodifiableMap(memberValues));
         return (A) Proxy.newProxyInstance(annotationType.getClassLoader(),
                 new Class[]{annotationType},
-                new AnnotationInvocationHandler(annotationType, memberValues));
+                new AnnotationInvocationHandler(annotationType, unmodifiableMap));
     }
 
     public static <A extends Annotation> AnnotationBuilder<A> implement(final Class<A> annotationType) {
@@ -24,7 +27,7 @@ public class AnnotationInvocationHandler implements InvocationHandler, Serializa
         return new AnnotationBuilder<A>() {
             @Override
             public A build() {
-                return AnnotationInvocationHandler.implement(annotationType, (UnmodifiableMap<String,Object>) MapUtils.unmodifiableMap(memberValueMap));
+                return AnnotationInvocationHandler.implement(annotationType, MapUtils.unmodifiableMap(memberValueMap));
             }
 
             @Override
