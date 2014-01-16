@@ -1,7 +1,7 @@
 package net.peachjean.tater.utils;
 
-import org.apache.commons.collections.MapUtils;
-import org.apache.commons.collections.map.UnmodifiableMap;
+import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.collections4.map.UnmodifiableMap;
 import org.apache.commons.lang3.AnnotationUtils;
 
 import java.io.Serializable;

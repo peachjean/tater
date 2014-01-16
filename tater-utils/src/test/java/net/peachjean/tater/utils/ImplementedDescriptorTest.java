@@ -1,7 +1,7 @@
 package net.peachjean.tater.utils;
 
 import net.peachjean.commons.test.junit.TmpDir;
-import org.apache.commons.collections.ListUtils;
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
