@@ -39,7 +39,6 @@
         <stringtemplate.version>3.2.1</stringtemplate.version>
     </properties>
     <modules>
-        <module>tater-maven-plugin</module>
         <module>tater-test-harness</module>
         <module>tater-utils</module>
     </modules>
@@ -86,6 +85,11 @@
                 <groupId>commons-collections</groupId>
                 <artifactId>commons-collections</artifactId>
                 <version>4.0-20130322.182931-187</version>
+            </dependency>
+            <dependency>
+                <groupId>org.kohsuke.metainf-services</groupId>
+                <artifactId>metainf-services</artifactId>
+                <version>1.5</version>
             </dependency>
 
 
