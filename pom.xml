@@ -67,11 +67,6 @@
                 <version>${stringtemplate.version}</version>
             </dependency>
             <dependency>
-                <groupId>net.peachjean.differentia</groupId>
-                <artifactId>differentia-javaica</artifactId>
-                <version>1.2</version>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.1</version>
@@ -93,20 +88,6 @@
                 <optional>true</optional>
             </dependency>
 
-
-            <!-- MAVEN PLUGIN DEPENDENCIES -->
-
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-plugin-api</artifactId>
-                <version>2.2.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.maven</groupId>
-                <artifactId>maven-archiver</artifactId>
-                <version>2.5</version>
-            </dependency>
-
             <!-- TEST DEPENDENCIES -->
 
             <dependency>
@@ -119,6 +100,12 @@
                 <groupId>junit</groupId>
                 <artifactId>junit-dep</artifactId>
                 <version>4.10</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.peachjean.differentia</groupId>
+                <artifactId>differentia-javaica</artifactId>
+                <version>1.2</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
