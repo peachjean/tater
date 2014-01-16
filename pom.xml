@@ -9,7 +9,7 @@
 
     <groupId>net.peachjean.tater</groupId>
     <artifactId>tater-root</artifactId>
-    <version>0.3-SNAPSHOT</version>
+    <version>0.3</version>
     <packaging>pom</packaging>
 
     <name>Tater</name>
@@ -51,12 +51,12 @@
             <dependency>
                 <groupId>net.peachjean.tater</groupId>
                 <artifactId>tater-test-harness</artifactId>
-                <version>0.3-SNAPSHOT</version>
+                <version>0.3</version>
             </dependency>
             <dependency>
                 <groupId>net.peachjean.tater</groupId>
                 <artifactId>tater-utils</artifactId>
-                <version>0.3-SNAPSHOT</version>
+                <version>0.3</version>
             </dependency>
 
             <!-- BASIC DEPENDENCY LIBRARIES-->
