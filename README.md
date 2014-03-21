@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/peachjean/tater.png?branch=master)](https://travis-ci.org/tater/packtory)
+[![Build Status](https://travis-ci.org/peachjean/tater.png?branch=master)](https://travis-ci.org/peachjean/tater)
 tater
 ========
 
