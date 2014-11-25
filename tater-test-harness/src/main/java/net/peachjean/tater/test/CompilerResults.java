@@ -6,6 +6,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import net.peachjean.commons.test.junit.AssertionHandler;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -13,6 +14,7 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
 import javax.tools.*;
+import javax.tools.Diagnostic.Kind;
 
 public class CompilerResults
 {
@@ -57,6 +59,10 @@ public class CompilerResults
         });
     }
 
+	public boolean hasNoOutput() {
+		return "".equals(this.getCompilerOutput());
+	}
+
     public void assertNoOutput() {
         this.assertionHandler.assertEquals("Unexpected Compiler Output", "", this.getCompilerOutput());
     }
@@ -67,19 +73,25 @@ public class CompilerResults
     }
 
     public void assertDiagnosticMatches(Diagnostic.Kind kind, String patternString, int numExpected) {
-        int numFound = 0;
-        Pattern pattern = Pattern.compile(patternString);
-        for(Diagnostic<? extends JavaFileObject> diagnostic: this.getDiagnosticsOfKind(kind)) {
-            final String message = diagnostic.getMessage(Locale.getDefault());
-            if(pattern.matcher(message).find()) {
-                numFound++;
-            }
-        }
+	    int numFound = getMatchingDiagnostics(kind, patternString).size();
         this.assertionHandler.assertEquals("Unexpected number of diagnostics matching pattern [[ " + patternString + " ]].",
                 numExpected, numFound);
     }
 
-    /**
+	public List<Diagnostic<? extends JavaFileObject>> getMatchingDiagnostics(final Kind kind, final String patternString)
+	{
+		Pattern pattern = Pattern.compile(patternString);
+		List<Diagnostic<? extends JavaFileObject>> matched = new ArrayList<Diagnostic<? extends JavaFileObject>>();
+		for(Diagnostic<? extends JavaFileObject> diagnostic: this.getDiagnosticsOfKind(kind)) {
+		    final String message = diagnostic.getMessage(Locale.getDefault());
+		    if(pattern.matcher(message).find()) {
+			    matched.add(diagnostic);
+		    }
+		}
+		return matched;
+	}
+
+	/**
      * Allows running assertions from within the undertest codebase.
      *
      * @param asserterClass The name of the class from the undertest codebase that implements {@link CompilerAsserter}.
