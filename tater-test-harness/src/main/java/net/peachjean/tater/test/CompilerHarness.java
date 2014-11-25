@@ -79,7 +79,10 @@ public class CompilerHarness
 		JavaCompiler.CompilationTask compilerTask =
 				compiler.getTask(compilerOutput, fileManager, diagnostics,
                         ImmutableList.of("-Xlint:unchecked", "-g"), null, compilationUnits);
-		compilerTask.setProcessors(processors);
+		if (!processors.isEmpty())
+		{
+			compilerTask.setProcessors(processors);
+		}
 
 		boolean success = compilerTask.call();
 

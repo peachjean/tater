@@ -110,7 +110,7 @@ public class CompilerResults
         }
     }
 
-    private ClassLoader createClassLoader() {
+    public ClassLoader createClassLoader() {
         return fileManager.getClassLoader(StandardLocation.CLASS_OUTPUT);
     }
 }
