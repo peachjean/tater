@@ -14,11 +14,11 @@
 
     <name>Tater</name>
     <description>A collection of utilities for dealing with annotations and writing annotation processors.</description>
-    <url>https://bitbucket.org/peachjean/tater</url>
+    <url>https://github.com/peachjean/tater</url>
     <scm>
-        <url>https://bitbucket.org/peachjean/tater</url>
-        <connection>scm:hg:ssh://hg@bitbucket.org/peachjean/tater</connection>
-        <developerConnection>scm:hg:ssh://hg@bitbucket.org/peachjean/tater</developerConnection>
+        <url>https://github.com/peachjean/tater</url>
+        <connection>scm:git:git://github.com/peachjean/tater.git</connection>
+        <developerConnection>scm:git:git@github.com:peachjean/tater.git</developerConnection>
     </scm>
     <licenses>
         <license>
@@ -30,8 +30,7 @@
     <developers>
         <developer>
             <name>Jared Bunting</name>
-            <email>jared.bunting@peachjean.com</email>
-            <organization>PeachJean Solutions</organization>
+            <email>jared@bunting.io</email>
             <timezone>-6</timezone>
         </developer>
     </developers>
