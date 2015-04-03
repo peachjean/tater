@@ -19,6 +19,7 @@
         <url>https://github.com/peachjean/tater</url>
         <connection>scm:git:git://github.com/peachjean/tater.git</connection>
         <developerConnection>scm:git:git@github.com:peachjean/tater.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
     <licenses>
         <license>
@@ -128,7 +129,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.2.1</version>
+                    <version>2.5.1</version>
                     <configuration>
                         <localCheckout>true</localCheckout>
                         <pushChanges>false</pushChanges>
