@@ -9,7 +9,7 @@
 
     <groupId>net.peachjean.tater</groupId>
     <artifactId>tater-root</artifactId>
-    <version>0.4</version>
+    <version>0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Tater</name>
@@ -19,7 +19,7 @@
         <url>https://github.com/peachjean/tater</url>
         <connection>scm:git:git://github.com/peachjean/tater.git</connection>
         <developerConnection>scm:git:git@github.com:peachjean/tater.git</developerConnection>
-        <tag>0.4</tag>
+        <tag>HEAD</tag>
     </scm>
     <licenses>
         <license>
@@ -51,12 +51,12 @@
             <dependency>
                 <groupId>net.peachjean.tater</groupId>
                 <artifactId>tater-test-harness</artifactId>
-                <version>0.4</version>
+                <version>0.5-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>net.peachjean.tater</groupId>
                 <artifactId>tater-utils</artifactId>
-                <version>0.4</version>
+                <version>0.5-SNAPSHOT</version>
             </dependency>
 
             <!-- BASIC DEPENDENCY LIBRARIES-->
